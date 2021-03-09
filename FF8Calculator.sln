@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30330.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FF8Calculator", "FF8Calculator\FF8Calculator.csproj", "{F1CC2FCC-32B9-4E2D-86E3-D7764168972A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1CC2FCC-32B9-4E2D-86E3-D7764168972A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1CC2FCC-32B9-4E2D-86E3-D7764168972A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1CC2FCC-32B9-4E2D-86E3-D7764168972A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1CC2FCC-32B9-4E2D-86E3-D7764168972A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B63A2943-9CA5-4B30-8A04-4CF03E064649}
+	EndGlobalSection
+EndGlobal
