@@ -39,7 +39,7 @@ namespace FF8Calculator.Models
             MinimumDamage = RoundDown(BaseDamage * (0 + 240) / 256);
             MinimumDamage = ApplyMultipliers(MinimumDamage);
 
-            MaximumDamage = RoundDown(BaseDamage * (32 + 240) / 256));
+            MaximumDamage = RoundDown(BaseDamage * (32 + 240) / 256);
             MaximumDamage = ApplyMultipliers(MaximumDamage);
 
             ChanceOfKillingWithMinNoOfHits = 0;
