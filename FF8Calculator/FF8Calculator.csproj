@@ -130,8 +130,10 @@
     <Compile Include="Models\Enemies\Buel.cs" />
     <Compile Include="Models\Enemies\Bomb.cs" />
     <Compile Include="Models\Enemies\Caterchipillar.cs" />
+    <Compile Include="Models\Enemies\Geezard.cs" />
     <Compile Include="Models\Enemies\Fastitocalon-F.cs" />
     <Compile Include="Models\Enemies\GlacialEye.cs" />
+    <Compile Include="Models\Enemies\EliteSoldier.cs" />
     <Compile Include="Models\Enemies\GSoldier.cs" />
     <Compile Include="Models\Enemies\Ifrit.cs" />
     <Compile Include="Models\Enemies\RedBat.cs" />
