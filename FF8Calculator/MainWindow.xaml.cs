@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using FF8Calculator.Models.Enemies;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,10 @@ namespace FF8Calculator
         public MainWindow()
         {
             InitializeComponent();
+
+            BiteBug biteBug = new BiteBug();
+            biteBug.CalculateStats(5);
+
         }
     }
 }

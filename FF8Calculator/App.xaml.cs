@@ -13,5 +13,6 @@ namespace FF8Calculator
     /// </summary>
     public partial class App : Application
     {
+
     }
 }
