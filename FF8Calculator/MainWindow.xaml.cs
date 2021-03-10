@@ -26,8 +26,7 @@ namespace FF8Calculator
         {
             InitializeComponent();
 
-            BiteBug biteBug = new BiteBug();
-            biteBug.CalculateStats(5);
+            DataContext = new MainWindowModel();
 
         }
     }

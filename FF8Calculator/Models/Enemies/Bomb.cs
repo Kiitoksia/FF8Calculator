@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +8,12 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Bomb : EnemyModel
     {
-        public Bomb() : base(007, "Bomb", new Element[] { }, new Element[] { })
+        public Bomb() : base(7, "Bomb", new Element[] { }, new Element[] { })
         {
 
         }
 
-        public override string HPFormula => "0.15(Lv)² + 3(Lv) + 20";
+        public override string HPFormula => "0.4(Lv)² + 8(Lv) + 280";
 
         public override string StrengthFormula => "([4.1(Lv)] - [(Lv)² / 200] + 4) / 4";
 

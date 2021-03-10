@@ -42,13 +42,13 @@ namespace FF8Calculator.Models
             MaximumDamage = RoundDown(BaseDamage * (32 + 240) / 256);
             MaximumDamage = ApplyMultipliers(MaximumDamage);
 
-            ChanceOfKillingWithMinNoOfHits = 0;
+            OneShotChance = 0;
             for (int i = 0; i < 32; i++)
             {
                 int dmgRoll = Math.Min(RoundDown(BaseDamage * (i + 240) / 256), 9999);
                 if (dmgRoll > TargetHP)
                 {
-                    ChanceOfKillingWithMinNoOfHits = decimal.Round(i / 32 * 100, 2, MidpointRounding.AwayFromZero);
+                    OneShotChance = decimal.Round((32 - i) / 32 * 100, 2, MidpointRounding.AwayFromZero);
                     break;
                 }
             }

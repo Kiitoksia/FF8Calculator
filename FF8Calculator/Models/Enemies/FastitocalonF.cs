@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace FF8Calculator.Models.Enemies
 {
-    public class Fastitocalon : EnemyModel
+    public class FastitocalonF : EnemyModel
     {
-        public Fastitocalon() : base(004, "Fastitocalon-F", new Element[] { }, new Element[] { })
+        public FastitocalonF() : base(4, "Fastitocalon-F", new Element[] { }, new Element[] { })
         {
 
         }

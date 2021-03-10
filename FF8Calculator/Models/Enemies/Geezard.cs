@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Geezard : EnemyModel
     {
-        public Geezard() : base(012, "Geezard", new Element[] { }, new Element[] { })
+        public Geezard() : base(12, "Geezard", new Element[] { }, new Element[] { })
         {
 
         }
