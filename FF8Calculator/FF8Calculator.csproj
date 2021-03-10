@@ -127,9 +127,14 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\BonusModel.cs" />
     <Compile Include="Models\Enemies\BiteBug.cs" />
+    <Compile Include="Models\Enemies\Buel.cs" />
+    <Compile Include="Models\Enemies\Bomb.cs" />
     <Compile Include="Models\Enemies\Caterchipillar.cs" />
     <Compile Include="Models\Enemies\Fastitocalon-F.cs" />
     <Compile Include="Models\Enemies\GlacialEye.cs" />
+    <Compile Include="Models\Enemies\GSoldier.cs" />
+    <Compile Include="Models\Enemies\Ifrit.cs" />
+    <Compile Include="Models\Enemies\RedBat.cs" />
     <Compile Include="Models\Enemies\TRexaur.cs" />
     <Compile Include="Models\EnemyModel.cs" />
     <Compile Include="Models\GFDamageModel.cs" />
