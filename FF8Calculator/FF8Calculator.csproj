@@ -199,7 +199,7 @@
     <Compile Include="Models\Enemies\LeftOrb.cs" />
     <Compile Include="Models\Enemies\LeftProbe.cs" />
     <Compile Include="Models\Enemies\Lefty.cs" />
-    <Compile Include="Models\Enemies\MainWindowModel.cs" />
+    <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\Enemies\Malboro.cs" />
     <Compile Include="Models\Enemies\Mesmerize.cs" />
     <Compile Include="Models\Enemies\Minotaur.cs" />

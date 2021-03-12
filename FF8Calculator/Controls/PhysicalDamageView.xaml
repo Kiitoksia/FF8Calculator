@@ -9,6 +9,19 @@
              d:DataContext="{d:DesignInstance models:PhysicalDamageModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Ability"/>
+        <ComboBox 
+            Grid.Column="1"
+            ItemsSource="{Binding AttackTypes}" 
+            DisplayMemberPath="Name"
+            SelectedItem="{Binding AttackType}"/>
     </Grid>
 </UserControl>

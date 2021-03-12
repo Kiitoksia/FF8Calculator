@@ -36,16 +36,16 @@ namespace FF8Calculator.Models
         /// </summary>
         protected void CalculateBase()
         {
-            MinimumDamage = RoundDown(BaseDamage * (0 + 240) / 256);
-            MinimumDamage = ApplyMultipliers(MinimumDamage);
+            int[] damageRolls = Enumerable.Range(0, 32).Select(t => ApplyMultipliers(RoundDown(BaseDamage * (t + 240) / 256))).ToArray();
 
-            MaximumDamage = RoundDown(BaseDamage * (32 + 240) / 256);
-            MaximumDamage = ApplyMultipliers(MaximumDamage);
+
+            MinimumDamage = damageRolls[0];
+            MaximumDamage = damageRolls[31];
 
             OneShotChance = 0;
             for (int i = 0; i < 32; i++)
             {
-                int dmgRoll = Math.Min(RoundDown(BaseDamage * (i + 240) / 256), 9999);
+                int dmgRoll = damageRolls[i];
                 if (dmgRoll > TargetHP)
                 {
                     OneShotChance = decimal.Round((32 - i) / 32 * 100, 2, MidpointRounding.AwayFromZero);
@@ -62,7 +62,79 @@ namespace FF8Calculator.Models
             MaxDamageWithMinNoOfHits = MaximumDamage * MinNumberOfHits;
             AverageDmgPerHitToKillWithMinNoOfHits = RoundUp(TargetHP / MinNumberOfHits);
 
-            ChanceOfKillingWithMinNoOfHits = Math.Min(MinNumberOfHits * BaseDamage / TargetHP * 100, 1) * 100;
+
+            //CalculateChangeOfKillingWithMinNoofHits(damageRolls);
+            //ChanceOfKillingWithMinNoOfHits = Math.Min(MinNumberOfHits * BaseDamage / TargetHP * 100, 1) * 100;
+        }
+
+        private void CalculateChangeOfKillingWithMinNoofHits(int[] damageRolls)
+        {
+
+            int total = (int)Math.Pow(33, MinNumberOfHits);
+           
+
+            if (MaxNumberOfHits == 1)
+            {
+                ChanceOfKillingWithMinNoOfHits = 100; // Lowest damage roll always kills in one hit                
+            }
+            else
+            {
+                // Min No of hits is assuming we always roll max damage
+                // We need to check how many iterations actually kill
+                // This is done by reversing the damage rolls so we work downwards, and then counting all possible damage rolls
+                
+                // Given [9999, 5000, 3000, 20000, 1000]
+
+                // 
+            }
+
+
+
+
+            // Do we want to calculate in reverse (highest -> lowest)
+            int killableCombos = RecursiveCheck(damageRolls.Reverse().ToArray(), TargetHP, MinNumberOfHits);
+
+            decimal percent = killableCombos / total;
+            ChanceOfKillingWithMinNoOfHits = percent * 100;
+        }
+
+        private int RecursiveCheck(int[] damageRolls, int remainingHP, int hitsLeft)
+        {
+            if (hitsLeft == 0) return 0;
+            if (remainingHP <= 0) return 0;
+
+            // We start at max damage rolls and work our way down
+
+
+            int killableCombos = 0;            
+
+
+            for (int i = 0; i <= 32; i++)
+            {
+                int damage = damageRolls[i];
+
+                if (damage >= remainingHP)
+                {
+                    // This damage roll kills
+                    killableCombos++;
+                }
+                else
+                {
+                    // Damage roll does not kill outright, lower HP/hits and run again
+                    remainingHP -= damage;
+                    hitsLeft--;
+                    int additionalCombosRequired = RecursiveCheck(damageRolls, remainingHP, hitsLeft);
+                    if (additionalCombosRequired == 0)
+                    {
+                        // Either no hits left, or no remaining HP, stop calculating
+                        return killableCombos;
+                    }
+
+                    killableCombos += additionalCombosRequired;
+                }
+            }
+
+            return killableCombos;
         }
 
         protected int ApplyMultipliers(int value)

@@ -8,13 +8,86 @@ namespace FF8Calculator.Models
 {
     public class LevelCalculatorModel : BaseModel
     {
-        public int Level1 { get; set; }
-        public int Level2 { get; set; }
-        public int Level3 { get; set; }
+        private int averageLevel;
+        private int highLevel;
+        private int level1;
+        private int level2;
+        private int level3;
+        private int lowLevel;
 
-        public int AverageLevel { get; set; }
-        public int LowLevel { get; set; }
-        public int HighLevel { get; set; }
+        public LevelCalculatorModel()
+        {
+            PropertyChanged += (s, e) => Calculate();
+        }
+
+        public int AverageLevel
+        {
+            get => averageLevel; 
+            private set
+            {
+                if (averageLevel == value)
+                    return;
+                averageLevel = value;
+                OnPropertyChanged();
+            }
+        }
+        public int HighLevel
+        {
+            get => highLevel; 
+            private set
+            {
+                if (highLevel == value)
+                    return;
+                highLevel = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public int Level1
+        {
+            get => level1; 
+            set
+            {
+                if (level1 == value)
+                    return;
+                level1 = value;
+                OnPropertyChanged();
+            }
+        }
+        public int Level2
+        {
+            get => level2; 
+            set
+            {
+                if (level2 == value)
+                    return;
+                level2 = value;
+                OnPropertyChanged();
+            }
+        }
+        public int Level3
+        {
+            get => level3; 
+            set
+            {
+                if (level3 == value)
+                    return;
+                level3 = value;
+                OnPropertyChanged();
+            }
+        }
+        public int LowLevel
+        {
+            get => lowLevel; 
+            private set
+            {
+                if (lowLevel == value)
+                    return;
+                lowLevel = value;
+                OnPropertyChanged();
+            }
+        }
 
         public void Calculate()
         {
@@ -28,5 +101,6 @@ namespace FF8Calculator.Models
             LowLevel = AverageLevel - RoundDown(AverageLevel / 5);
             HighLevel = AverageLevel + RoundDown(AverageLevel / 5);
         }
+
     }
 }

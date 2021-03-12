@@ -10,6 +10,16 @@ namespace FF8Calculator.Models
 {
     public abstract class EnemyModel : BaseModel
     {
+
+        private int _hp;
+        private int _evasion;
+        private int _experience;
+        private int _magic;
+        private int _speed;
+        private int _spirit;
+        private int _strength;
+        private int _vitality;
+
         public EnemyModel(int id, string name, Element[] immunities, Element[] weaknesses)
         {
             ID = id;
@@ -18,29 +28,137 @@ namespace FF8Calculator.Models
             Weaknesses = weaknesses;
         }
 
-        public string Name { get; }
-        public int ID { get; }
-        public int Level { get; set; }
+        private string CleanupFormula(string formula)
+        {
+            formula = formula.Replace("(Lv)", "Lv");
+            formula = formula.Replace("[", string.Empty);
+            formula = formula.Replace("]", string.Empty);
+            formula = formula.Replace("²", "^2");
 
-        public int HP { get; private set; }
-        public int Strength { get; private set; }
-        public int Magic { get; private set; }
-        public int Vitality { get; private set; }
-        public int Spirit { get; private set; }
-        public int Speed { get; private set; }
-        public int Evasion { get; private set; }
-        public int Experience { get; private set; }
-        public Element[] Immunities { get; }
-        public Element[] Weaknesses { get; }
+            for (int i = 0; i <= 9; i++)
+            {
+                formula = formula.Replace($"{i}Lv", $"{i}*Lv");
+            }
+            return formula;
+        }
+
+        private int Round(double value) => (int)Math.Floor(value);
+
+        public string Display => $"{Name} ({ID})";
+        public int Evasion
+        {
+            get => _evasion; 
+            private set
+            {
+                if (_evasion == value)
+                    return;
+                _evasion = value;
+                OnPropertyChanged();
+            }
+        }
+        public abstract string EvasionFormula { get; }
+        public int Experience
+        {
+            get => _experience; 
+            private set
+            {
+                if (_experience == value)
+                    return;
+                _experience = value;
+                OnPropertyChanged();
+            }
+        }
+        public abstract string ExperienceFormula { get; }
+        public int HP
+        {
+            get => _hp; 
+            private set
+            {
+                if (_hp == value)
+                    return;
+                _hp = value;
+                OnPropertyChanged();
+            }
+        }
 
         public abstract string HPFormula { get; }
-        public abstract string StrengthFormula { get;  }
+        public int ID { get; }
+        public Element[] Immunities { get; }
+        private int _level;
+        public int Level
+        {
+            get => _level; 
+            private set
+            {
+                if (_level == value)
+                    return;
+                _level = value;
+                OnPropertyChanged();
+            }
+        }
+        public int Magic
+        {
+            get => _magic; 
+            private set
+            {
+                if (_magic == value)
+                    return;
+                _magic = value;
+                OnPropertyChanged();
+            }
+        }
         public abstract string MagicFormula { get; }
-        public abstract string VitalityFormula { get; }
-        public abstract string SpiritFormula { get; }
+
+        public string Name { get; }
+        public int Speed
+        {
+            get => _speed; 
+            private set
+            {
+                if (_speed == value)
+                    return;
+                _speed = value;
+                OnPropertyChanged();
+            }
+        }
         public abstract string SpeedFormula { get; }
-        public abstract string EvasionFormula { get; }
-        public abstract string ExperienceFormula { get; }
+        public int Spirit
+        {
+            get => _spirit; 
+            private set
+            {
+                if (_spirit == value)
+                    return;
+                _spirit = value;
+                OnPropertyChanged();
+            }
+        }
+        public abstract string SpiritFormula { get; }
+        public int Strength
+        {
+            get => _strength; 
+            private set
+            {
+                if (_strength == value)
+                    return;
+                _strength = value;
+                OnPropertyChanged();
+            }
+        }
+        public abstract string StrengthFormula { get; }
+        public int Vitality
+        {
+            get => _vitality; 
+            private set
+            {
+                if (_vitality == value)
+                    return;
+                _vitality = value;
+                OnPropertyChanged();
+            }
+        }
+        public abstract string VitalityFormula { get; }
+        public Element[] Weaknesses { get; }
 
         public void CalculateStats(int level)
         {
@@ -60,20 +178,5 @@ namespace FF8Calculator.Models
             Experience = Round(engine.Calculate(CleanupFormula(ExperienceFormula), variableDict));
         }
 
-        private string CleanupFormula(string formula)
-        {
-            formula = formula.Replace("(Lv)", "Lv");
-            formula = formula.Replace("[", string.Empty);
-            formula = formula.Replace("]", string.Empty);
-            formula = formula.Replace("²", "^2");
-
-            for (int i = 0; i < 9; i++)
-            {
-                formula = formula.Replace($"{i}Lv", $"{i}*Lv");
-            }
-            return formula;
-        }
-
-        private int Round(double value) => (int)Math.Floor(value);
     }
 }

@@ -40,7 +40,17 @@ namespace FF8Calculator.Models
         public int ElemDefence { get; set; }
         
         public List<AbilityModel> AttackTypes { get; }
-        public AbilityModel AttackType { get; set; }        
+        private AbilityModel attackType;
+        public AbilityModel AttackType
+        {
+            get => attackType; set
+            {
+                if (attackType == value)
+                    return;
+                attackType = value;
+                OnPropertyChanged();
+            }
+        }
 
         public int ElementalDamage { get; set; }
         public int MinElementalDamage { get; set; }

@@ -5,13 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:FF8Calculator"
+        xmlns:models="clr-namespace:FF8Calculator.Models"
+        xmlns:controls="clr-namespace:FF8Calculator.Controls"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance models:MainWindowModel}"
         Title="MainWindow" Height="800" Width="1000">
-    <Grid>
+    <mah:MetroWindow.Resources>
+        <ResourceDictionary>
+            <Style TargetType="GroupBox">
+                <Setter Property="Padding" Value="10"/>
+            </Style>
+        </ResourceDictionary>
+    </mah:MetroWindow.Resources>
+    <StackPanel Margin="10">
+        <GroupBox Header="Levels">
+            <controls:LevelCalculatorView DataContext="{Binding LevelCalculator}"/>
+        </GroupBox>
         <GroupBox Header="Source">
             <Grid>
-                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Source"/>
+                <ComboBox 
+                    ItemsSource="{Binding Enemies}" 
+                    Grid.Column="1" 
+                    DisplayMemberPath="Display"
+                    IsTextSearchEnabled="True"
+                    IsTextSearchCaseSensitive="False"
+                    IsEditable="True"                    
+                    TextSearch.TextPath="Display"
+                    SelectedItem="{Binding Source}"/>
+
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="{Binding Source.Level, StringFormat=LVL: {0}, Mode=OneWay}"/>
+                    <TextBlock Text="{Binding Source.HP, StringFormat=HP: {0}, Mode=OneWay}"/>
+                    <TextBlock Text="{Binding Source.Strength, StringFormat=STR: {0}, Mode=OneWay}"/>
+                    <TextBlock Text="{Binding Source.Magic, StringFormat=MAG: {0}, Mode=OneWay}"/>
+                    <TextBlock Text="{Binding Source.Vitality, StringFormat=VIT: {0}, Mode=OneWay}"/>
+                </StackPanel>
             </Grid>
         </GroupBox>
-    </Grid>
+    </StackPanel>
 </mah:MetroWindow>

@@ -1,4 +1,4 @@
-﻿using FF8Calculator.Models.Enemies;
+﻿using FF8Calculator.Models;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
