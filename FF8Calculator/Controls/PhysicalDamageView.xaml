@@ -5,23 +5,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FF8Calculator.Controls"
              xmlns:models="clr-namespace:FF8Calculator.Models"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance models:PhysicalDamageModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="0.6*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <TextBlock Text="Ability"/>
-        <ComboBox 
+        <local:MultiplerListView DataContext="{Binding Multipliers}"/>
+
+        <Grid Grid.Column="1" Margin="10,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Ability"/>
+            <ComboBox 
             Grid.Column="1"
             ItemsSource="{Binding AttackTypes}" 
             DisplayMemberPath="Name"
             SelectedItem="{Binding AttackType}"/>
+            <TextBlock Text="Attacker Strength" Grid.Row="1"/>
+            <mah:NumericUpDown Value="{Binding AttackerStrength}" Minimum="0" Maximum="999" Grid.Row="1" Grid.Column="1"/>
+
+            <local:BaseDamageView DataContext="{Binding .}" Grid.Row="2" Grid.ColumnSpan="2"/>
+        </Grid>
+
     </Grid>
+    
 </UserControl>

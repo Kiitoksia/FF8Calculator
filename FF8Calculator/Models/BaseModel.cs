@@ -10,10 +10,12 @@ namespace FF8Calculator.Models
 {
     public abstract class BaseModel : INotifyPropertyChanged
     {
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 

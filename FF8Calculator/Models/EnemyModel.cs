@@ -42,9 +42,9 @@ namespace FF8Calculator.Models
             return formula;
         }
 
-        private int Round(double value) => (int)Math.Floor(value);
+        private int Round(double value) => (int)Math.Round(value);
 
-        public string Display => $"{Name} ({ID})";
+        public string Display => $"{Name} (#{ID.ToString().PadLeft(3, '0')})";
         public int Evasion
         {
             get => _evasion; 
@@ -176,6 +176,11 @@ namespace FF8Calculator.Models
             Speed = Round(engine.Calculate(CleanupFormula(SpeedFormula), variableDict));
             Evasion = Round(engine.Calculate(CleanupFormula(EvasionFormula), variableDict));
             Experience = Round(engine.Calculate(CleanupFormula(ExperienceFormula), variableDict));
+        }
+
+        public EnemyModel Clone()
+        {
+            return (EnemyModel)MemberwiseClone();
         }
 
     }

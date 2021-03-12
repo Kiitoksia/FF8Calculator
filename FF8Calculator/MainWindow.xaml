@@ -12,30 +12,38 @@
         Title="MainWindow" Height="800" Width="1000">
     <mah:MetroWindow.Resources>
         <ResourceDictionary>
-            <Style TargetType="GroupBox">
+            <Style TargetType="GroupBox" BasedOn="{StaticResource MahApps.Styles.GroupBox}">
                 <Setter Property="Padding" Value="10"/>
             </Style>
         </ResourceDictionary>
     </mah:MetroWindow.Resources>
     <StackPanel Margin="10">
-        <GroupBox Header="Levels">
-            <controls:LevelCalculatorView DataContext="{Binding LevelCalculator}"/>
-        </GroupBox>
-        <GroupBox Header="Source">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="Levels">
+                <controls:LevelCalculatorView DataContext="{Binding LevelCalculator}"/>
+            </GroupBox>
+            <GroupBox Header="Source" Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <TextBlock Text="Source"/>
-                <ComboBox 
-                    ItemsSource="{Binding Enemies}" 
+                    <TextBlock Text="Source"/>
+                    <ComboBox 
+                    ItemsSource="{Binding Enemies, Mode=OneTime}" 
                     Grid.Column="1" 
+                    Grid.ColumnSpan="2"
                     DisplayMemberPath="Display"
                     IsTextSearchEnabled="True"
                     IsTextSearchCaseSensitive="False"
@@ -43,14 +51,41 @@
                     TextSearch.TextPath="Display"
                     SelectedItem="{Binding Source}"/>
 
-                <StackPanel Grid.Row="1">
-                    <TextBlock Text="{Binding Source.Level, StringFormat=LVL: {0}, Mode=OneWay}"/>
-                    <TextBlock Text="{Binding Source.HP, StringFormat=HP: {0}, Mode=OneWay}"/>
-                    <TextBlock Text="{Binding Source.Strength, StringFormat=STR: {0}, Mode=OneWay}"/>
-                    <TextBlock Text="{Binding Source.Magic, StringFormat=MAG: {0}, Mode=OneWay}"/>
-                    <TextBlock Text="{Binding Source.Vitality, StringFormat=VIT: {0}, Mode=OneWay}"/>
-                </StackPanel>
-            </Grid>
-        </GroupBox>
+                    <TextBlock Text="Level Selection" Grid.Row="1"/>
+
+                    <ComboBox
+                        ItemsSource="{Binding Source={local:EnumSourceExtension {x:Type local:LevelSelect}}}"
+                        SelectedItem="{Binding LevelSelect}"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        />
+
+                    <GroupBox Header="Low Level" Grid.Row="2" Margin="0,10,0,0">
+                        <controls:EnemyStatsView DataContext="{Binding LowLevelEnemy}"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Average Level" Grid.Row="2" Grid.Column="1" Margin="0,10,0,0">
+                        <controls:EnemyStatsView DataContext="{Binding AverageLevelEnemy}"/>
+                    </GroupBox>
+
+                    <GroupBox Header="High Level" Grid.Row="2" Grid.Column="2" Margin="0,10,0,0">
+                        <controls:EnemyStatsView DataContext="{Binding HighLevelEnemy}"/>
+                    </GroupBox>
+
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+        <TabControl>
+            <TabItem Header="Physical Calculator">
+                <controls:PhysicalDamageView DataContext="{Binding PhysicalDamage}"/>
+            </TabItem>
+            <TabItem Header="Magic Calculator">
+                <controls:MagicalDamageView DataContext="{Binding MagicDamage}"/>
+            </TabItem>
+            <TabItem Header="GF Calculator">
+                <!--<controls:GFDamageView DataContext="{Binding}"-->
+            </TabItem>
+        </TabControl>
     </StackPanel>
 </mah:MetroWindow>

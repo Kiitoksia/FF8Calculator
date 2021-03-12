@@ -24,9 +24,9 @@ namespace FF8Calculator.Models
             GFs.Add(new GFModel("Eden", 70, 250, 100, Element.NoneBypassSpirit));
             GFs.Add(new GFModel("Phoenix", 30, 50, 254, Element.Fire));
 
-            Multipliers.Add(new MultiplierModel("Raldo Defence Mode", 0.67m));
-            Multipliers.Add(new MultiplierModel("Invulnerable", 0));
-            Multipliers.Add(new MultiplierModel("Elemental Multiplier", 1.5m));
+            MultiplierModel.Create(this, "Raldo Defence Mode", 0.67m);
+            MultiplierModel.Create(this, "Invulnerable", 0);
+            MultiplierModel.Create(this, "Elemental Multiplier", 1.5m);
         }
 
         public int Level { get; set; }

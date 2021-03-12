@@ -76,6 +76,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\EnemyStatsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\GFDamageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MagicalDamageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MultiplerListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -104,6 +112,9 @@
     <Compile Include="Controls\BaseDamageView.xaml.cs">
       <DependentUpon>BaseDamageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\EnemyStatsView.xaml.cs">
+      <DependentUpon>EnemyStatsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\GFDamageView.xaml.cs">
       <DependentUpon>GFDamageView.xaml</DependentUpon>
     </Compile>
@@ -113,9 +124,13 @@
     <Compile Include="Controls\MagicalDamageView.xaml.cs">
       <DependentUpon>MagicalDamageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MultiplerListView.xaml.cs">
+      <DependentUpon>MultiplerListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PhysicalDamageView.xaml.cs">
       <DependentUpon>PhysicalDamageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

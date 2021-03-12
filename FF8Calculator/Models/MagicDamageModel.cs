@@ -23,10 +23,10 @@ namespace FF8Calculator.Models
             AttackTypes.Add(new AbilityModel("Quake", 40));
             AttackTypes.Add(new AbilityModel("Meteor", 20));
 
-            Multipliers.Add(new MultiplierModel("Raldo Defence Mode", 0.67m));
-            Multipliers.Add(new MultiplierModel("Invulnerable", 0));
-            Multipliers.Add(new MultiplierModel("Shell", 0.5m));
-            Multipliers.Add(new MultiplierModel("Elemental Multiplier", 2));
+            MultiplierModel.Create(this, "Raldo Defence Mode", 0.67m);
+            MultiplierModel.Create(this, "Invulnerable", 0);
+            MultiplierModel.Create(this, "Shell", 0.5m);
+            MultiplierModel.Create(this, "Elemental Multiplier", 2);
         }
 
         public int CasterMagic { get; set; }

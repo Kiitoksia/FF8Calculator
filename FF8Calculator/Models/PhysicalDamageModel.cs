@@ -10,14 +10,14 @@ namespace FF8Calculator.Models
     {
         public PhysicalDamageModel()
         {
-            Multipliers.Add(new MultiplierModel("Trigger", 1.5m));
-            Multipliers.Add(new MultiplierModel("Back Attack", 2));
-            Multipliers.Add(new MultiplierModel("Critical Strike", 2));
-            Multipliers.Add(new MultiplierModel("Raldo Defense Mode", 0.67m)); // TODO Check with Windows
-            Multipliers.Add(new MultiplierModel("Invulnerable", 0));
-            Multipliers.Add(new MultiplierModel("Berserk", 1.5m));
-            Multipliers.Add(new MultiplierModel("Protect", 0.5m));
-            Multipliers.Add(new MultiplierModel("Darkside", 3));
+            MultiplierModel.Create(this, "Trigger", 1.5m);
+            MultiplierModel.Create(this, "Back Attack", 2);
+            MultiplierModel.Create(this, "Critical Strike", 2);
+            MultiplierModel.Create(this, "Raldo Defense Mode", 0.67m); // TODO Check with Windows
+            MultiplierModel.Create(this, "Invulnerable", 0);
+            MultiplierModel.Create(this, "Berserk", 1.5m);
+            MultiplierModel.Create(this, "Protect", 0.5m);
+            MultiplierModel.Create(this, "Darkside", 3);
             
             AttackTypes = new List<AbilityModel>();
             AttackTypes.Add(new AbilityModel("Basic Attack", 20));
@@ -34,8 +34,18 @@ namespace FF8Calculator.Models
             AttackType = AttackTypes[0]; // Default to Basic Attack
         }
 
-        public int AttackerStrength { get; set; }
-        public int TargetVitality { get; set; }   
+        private LevelSelect level;
+        public LevelSelect Level
+        {
+            get => level; set
+            {
+                if (level == value)
+                    return;
+                level = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int ElemAttack { get; set; }
         public int ElemDefence { get; set; }
         
@@ -48,6 +58,7 @@ namespace FF8Calculator.Models
                 if (attackType == value)
                     return;
                 attackType = value;
+                Calculate();
                 OnPropertyChanged();
             }
         }
@@ -56,12 +67,40 @@ namespace FF8Calculator.Models
         public int MinElementalDamage { get; set; }
         public int MaxElementalDamage { get; set; }
 
+        private int attackerStrength;
+        public int AttackerStrength
+        {
+            get => attackerStrength; set
+            {
+                if (attackerStrength == value)
+                    return;
+                attackerStrength = value;
+                OnPropertyChanged();
+                Calculate();
+            }
+        }
+
+        private EnemyModel target;
+        public EnemyModel Target
+        {
+            get => target; set
+            {
+                if (target == value)
+                    return;
+                target = value;
+                Calculate();
+                OnPropertyChanged();
+            }
+        }
+
         public void Calculate()
         {
-            decimal damageA = RoundDown(AttackerStrength ^ 2 / 16 + AttackerStrength);
-            decimal damageB = RoundDown(damageA * (265 - TargetVitality) / 256);
+            if (Target == null) return; // TODO Reset everything to zero
+            decimal damageA = RoundDown((AttackerStrength ^ 2) / 16 + AttackerStrength);
+            decimal damageB = RoundDown(damageA * (265 - Target.Vitality) / 256);
             BaseDamage = RoundDown(damageB * AttackType.Power / 16);
-
+            TargetHP = Target.HP;
+            
             CalculateBase();
             
             ElementalDamage = RoundDown(Math.Min(BaseDamage + BaseDamage * ElemAttack * (800 - ElemDefence) / 10000, 9999));

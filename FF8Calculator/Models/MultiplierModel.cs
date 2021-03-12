@@ -13,7 +13,19 @@ namespace FF8Calculator.Models
         private decimal multiplier;
         private string name;
 
-        public MultiplierModel(string name, decimal multiplier)
+
+        public static void Create(BaseDamageModel viewModel, string name, decimal multiplier)
+        {
+            MultiplierModel model = new MultiplierModel(name, multiplier);
+            model.PropertyChanged += (s, e) =>
+            {
+                viewModel.OnPropertyChanged(nameof(BaseDamageModel.Multipliers));
+            };
+
+            viewModel.Multipliers.Add(model);
+        }
+
+        private MultiplierModel(string name, decimal multiplier)
         {
             Name = name;
             Multiplier = multiplier; 

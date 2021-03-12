@@ -19,4 +19,11 @@ namespace FF8Calculator
         Poison,
         NoneBypassSpirit,
     }
+
+    public enum LevelSelect
+    {
+        Low,
+        Average,
+        High
+    }
 }
