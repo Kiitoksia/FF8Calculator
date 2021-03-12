@@ -118,15 +118,26 @@ namespace FF8Calculator.Models
         /// </summary>
         protected void CalculateBase()
         {
+            // Reset all values to zero first
+            MinimumDamage = 0;
+            MaximumDamage = 0;
+            OneShotChance = 0;
+            MinNumberOfHits = 0;
+            MaxDamageDealt = 0;
+            MinDamageDealt = 0;
+            MaxDamageWithMinNoOfHits = 0;
+            AverageDmgPerHitToKillWithMinNoOfHits = 0;
+
             if (BaseDamage == 0 || TargetHP == 0) return;
+
             int[] damageRolls = Enumerable.Range(0, 32).Select(t => ApplyMultipliers(RoundDown(BaseDamage * (t + 240) / 256))).ToArray();
 
             damageRolls = damageRolls.Where(t => t > 0).ToArray();
+            if (damageRolls.Length == 0) return;
 
             MinimumDamage = damageRolls.First();
             MaximumDamage = damageRolls.Last();
 
-            OneShotChance = 0;
             for (int i = 0; i < 32; i++)
             {
                 int dmgRoll = damageRolls[i % damageRolls.Length];
@@ -140,8 +151,8 @@ namespace FF8Calculator.Models
             MinNumberOfHits = RoundUp(TargetHP / MaximumDamage);
             MaxNumberOfHits = RoundUp(TargetHP / MinimumDamage);
 
-            MinDamageDealt = RoundUp(MinNumberOfHits * MaximumDamage);
-            MaxDamageDealt = RoundUp(MaxNumberOfHits * MinimumDamage);
+            MinDamageDealt = MinNumberOfHits * MaximumDamage;
+            MaxDamageDealt = MaxNumberOfHits * MinimumDamage;
 
             MaxDamageWithMinNoOfHits = MaximumDamage * MinNumberOfHits;
             AverageDmgPerHitToKillWithMinNoOfHits = RoundUp(TargetHP / MinNumberOfHits);
