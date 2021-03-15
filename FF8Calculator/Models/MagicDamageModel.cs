@@ -8,6 +8,14 @@ namespace FF8Calculator.Models
 {
     public class MagicDamageModel : BaseDamageModel
     {
+
+        private AbilityModel _attackType;
+        private int _casterMagic;
+        private int _drawCastMaxDamage;
+        private int _drawCastMinDamage;
+        private EnemyModel _target;
+
+
         public MagicDamageModel()
         {
             AttackTypes = new List<AbilityModel>();
@@ -22,6 +30,7 @@ namespace FF8Calculator.Models
             AttackTypes.Add(new AbilityModel("Tornado", 38));
             AttackTypes.Add(new AbilityModel("Quake", 40));
             AttackTypes.Add(new AbilityModel("Meteor", 20));
+            AttackType = AttackTypes[0]; // Default to first
 
             MultiplierModel.Create(this, "Raldo Defence Mode", 0.67m);
             MultiplierModel.Create(this, "Invulnerable", 0);
@@ -29,26 +38,83 @@ namespace FF8Calculator.Models
             MultiplierModel.Create(this, "Elemental Multiplier", 2);
         }
 
-        public int CasterMagic { get; set; }
-        public int TargetSpirit { get; set; }
+        public AbilityModel AttackType
+        {
+            get => _attackType;
+            set
+            {
+                if (_attackType == value)
+                    return;
+                _attackType = value;
+                Calculate();
+                OnPropertyChanged();
+            }
+        }
+
 
         public List<AbilityModel> AttackTypes { get; set; }
-        public AbilityModel AttackType { get; set; }
 
-        public int DrawCastMinDamage { get; set; }
-        public int DrawCastMaxDamage { get; set; }
-
-        public void Calculate()
+        public int CasterMagic
         {
-            decimal damageA = Math.Min(RoundDown(CasterMagic + AttackType.Power), 9999);
-            decimal damageB = Math.Min(RoundDown(damageA * (265 - TargetSpirit) / 4), 9999);
-            
-            BaseDamage = Math.Min(RoundDown(damageB * AttackType.Power / 256), 9999);
-            
-            CalculateBase();
-            DrawCastMinDamage = Math.Min(RoundDown(BaseDamage * (0 + 10) / 150), 9999);
+            get => _casterMagic;
+            set
+            {
+                if (_casterMagic == value)
+                    return;
+                _casterMagic = value;
+                OnPropertyChanged();
+                Calculate();
+            }
+        }
+        public int DrawCastMaxDamage
+        {
+            get => _drawCastMaxDamage;
+            private set
+            {
+                if (_drawCastMaxDamage == value)
+                    return;
+                _drawCastMaxDamage = value;
+                OnPropertyChanged();
+            }
+        }
+        public int DrawCastMinDamage
+        {
+            get => _drawCastMinDamage;
+            private set
+            {
+                if (_drawCastMinDamage == value)
+                    return;
+                _drawCastMinDamage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public EnemyModel Target
+        {
+            get => _target;
+            set
+            {
+                if (_target == value)
+                    return;
+                _target = value;
+                OnPropertyChanged();
+                Calculate();
+            }
+        }
+
+        public override void Calculate()
+        {
+            if (Target == null) return; // TODO Reset everything to zero
+            decimal damageA = RoundDown(CasterMagic + AttackType.Power);
+            decimal damageB = RoundDown(damageA * (265 - Target.Spirit) / 4m);
+
+            BaseDamage = RoundDown(damageB * AttackType.Power / 256m);
+            TargetHP = Target.HP;
+
+            base.Calculate();
+            DrawCastMinDamage = RoundDown(BaseDamage * (0 + 10) / 150);
             DrawCastMinDamage = ApplyMultipliers(DrawCastMinDamage);
-            DrawCastMaxDamage = Math.Min(RoundDown(BaseDamage * (255 + 10) / 150), 9999);
+            DrawCastMaxDamage = RoundDown(BaseDamage * (255 + 10) / 150);
             DrawCastMaxDamage = ApplyMultipliers(DrawCastMaxDamage);
         }
 

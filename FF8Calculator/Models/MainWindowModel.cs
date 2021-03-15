@@ -13,7 +13,7 @@ namespace FF8Calculator.Models
         private EnemyModel _averageLevelEnemy;
         private EnemyModel _highLevelEnemy;
         private EnemyModel _lowLevelEnemy;
-        private EnemyModel _source;
+        private EnemyModel _target;
         private LevelSelect _levelSelect = LevelSelect.High;
 
         public MainWindowModel()
@@ -42,7 +42,7 @@ namespace FF8Calculator.Models
 
         private void RecalculateAllStats()
         {
-            if (Source == null)
+            if (Target == null)
             {
                 LowLevelEnemy?.CalculateStats(0);
                 AverageLevelEnemy?.CalculateStats(0);
@@ -100,12 +100,15 @@ namespace FF8Calculator.Models
             {
                 case LevelSelect.Low:
                     PhysicalDamage.Target = LowLevelEnemy;
+                    MagicDamage.Target = LowLevelEnemy;
                     break;
                 case LevelSelect.Average:
                     PhysicalDamage.Target = AverageLevelEnemy;
+                    MagicDamage.Target = AverageLevelEnemy;
                     break;
                 case LevelSelect.High:
                     PhysicalDamage.Target = HighLevelEnemy;
+                    MagicDamage.Target = HighLevelEnemy;
                     break;
             }
         }
@@ -127,13 +130,13 @@ namespace FF8Calculator.Models
 
         public PhysicalDamageModel PhysicalDamage { get; }
 
-        public EnemyModel Source
+        public EnemyModel Target
         {
-            get => _source; set
+            get => _target; set
             {
-                if (_source == value)
+                if (_target == value)
                     return;
-                _source = value;
+                _target = value;
 
                 LowLevelEnemy = value?.Clone();
                 AverageLevelEnemy = value?.Clone();

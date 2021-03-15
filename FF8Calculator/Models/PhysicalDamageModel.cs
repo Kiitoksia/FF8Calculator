@@ -8,6 +8,8 @@ namespace FF8Calculator.Models
 {
     public class PhysicalDamageModel : BaseDamageModel
     {
+        private AbilityModel _attackType;
+
         public PhysicalDamageModel()
         {
             MultiplierModel.Create(this, "Trigger", 1.5m);
@@ -34,30 +36,17 @@ namespace FF8Calculator.Models
             AttackType = AttackTypes[0]; // Default to Basic Attack
         }
 
-        private LevelSelect level;
-        public LevelSelect Level
-        {
-            get => level; set
-            {
-                if (level == value)
-                    return;
-                level = value;
-                OnPropertyChanged();
-            }
-        }
-
         public int ElemAttack { get; set; }
         public int ElemDefence { get; set; }
         
         public List<AbilityModel> AttackTypes { get; }
-        private AbilityModel attackType;
         public AbilityModel AttackType
         {
-            get => attackType; set
+            get => _attackType; set
             {
-                if (attackType == value)
+                if (_attackType == value)
                     return;
-                attackType = value;
+                _attackType = value;
                 Calculate();
                 OnPropertyChanged();
             }
@@ -93,15 +82,17 @@ namespace FF8Calculator.Models
             }
         }
 
-        public void Calculate()
+        public override void Calculate()
         {
             if (Target == null) return; // TODO Reset everything to zero
-            decimal damageA = RoundDown((AttackerStrength ^ 2) / 16 + AttackerStrength);
-            decimal damageB = RoundDown(damageA * (265 - Target.Vitality) / 256);
-            BaseDamage = RoundDown(damageB * AttackType.Power / 16);
+            decimal damageA = RoundDown((decimal)Math.Pow(AttackerStrength, 2) / 16m) + AttackerStrength;
+            decimal damageB = RoundDown(damageA * (265 - Target.Vitality) / 256m);
+            BaseDamageWithoutMultipliers = RoundDown((damageB * AttackType.Power / 16m));
+            BaseDamage = RoundDown(ApplyMultipliers(BaseDamageWithoutMultipliers));
+
             TargetHP = Target.HP;
             
-            CalculateBase();
+            base.Calculate();
             
             ElementalDamage = RoundDown(Math.Min(BaseDamage + BaseDamage * ElemAttack * (800 - ElemDefence) / 10000, 9999));
             MinElementalDamage = RoundDown(Math.Min(MinimumDamage + MinimumDamage * ElemAttack * (800 - ElemDefence / 10000), 9999));

@@ -21,5 +21,6 @@ namespace FF8Calculator.Models
 
         protected int RoundDown(decimal value) => Math.Min((int)decimal.Floor(value), 9999);
         protected int RoundUp(decimal value) => Math.Min((int)decimal.Ceiling(value), 9999);
+        protected int RoundUp (int value) => Math.Min((int)decimal.Ceiling((decimal)value), 9999);
     }
 }

@@ -5,10 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FF8Calculator.Controls"
              xmlns:models="clr-namespace:FF8Calculator.Models"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance models:BaseDamageModel}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBox" BasedOn="{StaticResource MahApps.Styles.TextBox}">
+                <Setter Property="IsReadOnly" Value="True"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0.3*"/>
@@ -22,30 +31,47 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Minimum # of hits"/>
-        <TextBox Text="{Binding MinNumberOfHits, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Column="1"/>
+        <TextBlock Text="Base Damage"/>
+        <TextBox Text="{Binding BaseDamage, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Column="1"/>
 
-        <TextBlock Text="Maximum # of hits" Grid.Row="1"/>
-        <TextBox Text="{Binding MaxNumberOfHits, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
+        <TextBlock Text="Minimum Damage Roll" Grid.Row="1"/>
+        <TextBox Text="{Binding MinimumDamage, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
 
-        <TextBlock Text="Chance to kill target in one hit" Grid.Row="2"/>
-        <TextBox Text="{Binding OneShotChance, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="2" Grid.Column="1"/>
+        <TextBlock Text="Maximum Damage Roll" Grid.Row="2"/>
+        <TextBox Text="{Binding MaximumDamage, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="2" Grid.Column="1"/>
 
-        <TextBlock Text="Minimum damage dealt" Grid.Row="3"/>
-        <TextBox Text="{Binding MinDamageDealt, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="3" Grid.Column="1"/>
+        <TextBlock Text="Minimum # of hits" Grid.Row="3"/>
+        <TextBox Text="{Binding MinNumberOfHits, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="3" Grid.Column="1"/>
 
-        <TextBlock Text="Maximum damage dealt" Grid.Row="4"/>
-        <TextBox Text="{Binding MaxDamageDealt, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="4" Grid.Column="1"/>
+        <TextBlock Text="Maximum # of hits" Grid.Row="4"/>
+        <TextBox Text="{Binding MaxNumberOfHits, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="4" Grid.Column="1"/>
 
-        <TextBlock Text="Max dmg with min # of hits" Grid.Row="5"/>
-        <TextBox Text="{Binding MaxDamageWithMinNoOfHits, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="5" Grid.Column="1"/>
+        <TextBlock Text="Chance to kill target in one hit" Grid.Row="5"/>
+        <TextBox Text="{Binding OneShotChance, StringFormat={}{0:n2} %, Mode=OneWay}" Grid.Row="5" Grid.Column="1"/>
 
-        <TextBlock Text="Average dmg per hit to kill with min # of hits" Grid.Row="6"/>
-        <TextBox Text="{Binding AverageDmgPerHitToKillWithMinNoOfHits, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock Text="Minimum damage dealt" Grid.Row="6"/>
+        <TextBox Text="{Binding MinDamageDealt, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="6" Grid.Column="1"/>
 
-        <TextBlock Text="Approx. chance of killing target with min # of hits" Grid.Row="7"/>
-        <TextBox Text="{Binding ChanceOfKillingWithMinNoOfHits, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="7" Grid.Column="1"/>
+        <TextBlock Text="Maximum damage dealt" Grid.Row="7"/>
+        <TextBox Text="{Binding MaxDamageDealt, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="7" Grid.Column="1"/>
+
+        <TextBlock Text="Max dmg with min # of hits" Grid.Row="8"/>
+        <TextBox Text="{Binding MaxDamageWithMinNoOfHits, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="8" Grid.Column="1"/>
+
+        <TextBlock Text="Average dmg per hit to kill with min # of hits" Grid.Row="9"/>
+        <TextBox Text="{Binding AverageDmgPerHitToKillWithMinNoOfHits, StringFormat={}{0:n0}, Mode=OneWay}" Grid.Row="9" Grid.Column="1"/>
+
+        <TextBlock Text="Approx. chance of killing target with min # of hits" Grid.Row="10"/>
+        <DockPanel Grid.Row="10" Grid.Column="1" LastChildFill="True">
+            <Button Command="{Binding CalculatePercentageCommand}" Content="Calculate" DockPanel.Dock="Right"/>
+            <!--<mah:ProgressRing Visibility=""/>-->
+            <TextBox Text="{Binding ChanceOfKillingWithMinNoOfHits, StringFormat={}{0:n2} %, Mode=OneWay}" DockPanel.Dock="Left"/>
+        </DockPanel>
+        
     </Grid>
 </UserControl>

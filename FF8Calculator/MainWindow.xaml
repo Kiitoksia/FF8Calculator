@@ -26,7 +26,7 @@
             <GroupBox Header="Levels">
                 <controls:LevelCalculatorView DataContext="{Binding LevelCalculator}"/>
             </GroupBox>
-            <GroupBox Header="Source" Grid.Column="1">
+            <GroupBox Header="Target" Grid.Column="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -39,7 +39,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Source"/>
+                    <TextBlock Text="Target"/>
                     <ComboBox 
                     ItemsSource="{Binding Enemies, Mode=OneTime}" 
                     Grid.Column="1" 
@@ -49,7 +49,7 @@
                     IsTextSearchCaseSensitive="False"
                     IsEditable="True"                    
                     TextSearch.TextPath="Display"
-                    SelectedItem="{Binding Source}"/>
+                    SelectedItem="{Binding Target}"/>
 
                     <TextBlock Text="Level Selection" Grid.Row="1"/>
 
@@ -84,6 +84,7 @@
                 <controls:MagicalDamageView DataContext="{Binding MagicDamage}"/>
             </TabItem>
             <TabItem Header="GF Calculator">
+                <TextBlock Text="TODO"/>
                 <!--<controls:GFDamageView DataContext="{Binding}"-->
             </TabItem>
         </TabControl>

@@ -36,15 +36,14 @@ namespace FF8Calculator.Models
         public GFModel GF { get; set; }
 
 
-        public void Calculate()
+        public override void Calculate()
         {
             decimal damageA = RoundDown(GF.LevelMod * Level / 10 + GF.Power + GF.PowerMod);
             decimal damageB = RoundDown(damageA * (265 - TargetSpirit) / 8);
             decimal damageC = RoundDown(damageB * GF.Power / 256);
             BaseDamage = RoundDown(damageC * Boost / 100);
 
-            CalculateBase();
-
+            base.Calculate();
         }
     }
 }

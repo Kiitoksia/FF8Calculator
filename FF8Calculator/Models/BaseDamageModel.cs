@@ -19,6 +19,11 @@ namespace FF8Calculator.Models
         private int _minimumDamage;
         private int _minNumberOfHits;
         private decimal _oneShotChance;
+        private decimal _baseDamage;
+        private decimal _baseDamageWithoutMultipliers;
+        private bool _percentageCalculating;
+
+
 
         public BaseDamageModel()
         {
@@ -27,87 +32,104 @@ namespace FF8Calculator.Models
             {
                 if (e.PropertyName == nameof(Multipliers))
                 {
-                    CalculateBase();
+                    Calculate();
                 }
             };
+
+            CalculatePercentageCommand = new Command(() => true, CalculateChangeOfKillingWithMinNoofHits);
         }
 
-        private void CalculateChangeOfKillingWithMinNoofHits(int[] damageRolls)
+        private void CalculateChangeOfKillingWithMinNoofHits()
         {
+            PercentageCalculating = true;
+            DamageRolls.Clear();
+            _killableCombos = 0;
+            _currentHP = 0;
+
+            for (int i = 0; i < 32; i++)
+            {
+                int damageRoll = RoundDown(BaseDamageWithoutMultipliers * (i + 240) / 256);
+                damageRoll = ApplyMultipliers(damageRoll);
+                if (damageRoll == 0) continue;
+                DamageRolls.Add(damageRoll);
+            }
+           
+            if (DamageRolls.Count == 0) return;
 
             // TODO
-            int total = (int)Math.Pow(33, MinNumberOfHits);
+            double total = Math.Pow(33, MinNumberOfHits);
 
 
             if (MaxNumberOfHits == 1)
             {
                 ChanceOfKillingWithMinNoOfHits = 100; // Lowest damage roll always kills in one hit                
             }
+            else if (MaxNumberOfHits == MinNumberOfHits)
+            {
+                ChanceOfKillingWithMinNoOfHits = 100; // We always kill in the same amount of hits
+            }
             else
             {
-                // Min No of hits is assuming we always roll max damage
-                // We need to check how many iterations actually kill
-                // This is done by reversing the damage rolls so we work downwards, and then counting all possible damage rolls
+                double killableCombos = (double)RecursiveCheck(DamageRolls.Reverse().ToArray(), MinNumberOfHits, TargetHP);
 
-                // Given [9999, 5000, 3000, 20000, 1000]
-
-                // 
-            }
-
-
-
-
-            // Do we want to calculate in reverse (highest -> lowest)
-            int killableCombos = RecursiveCheck(damageRolls.Reverse().ToArray(), TargetHP, MinNumberOfHits);
-
-            decimal percent = killableCombos / total;
-            ChanceOfKillingWithMinNoOfHits = percent * 100;
+                decimal percent = (decimal)(killableCombos / total);
+                ChanceOfKillingWithMinNoOfHits = percent * 100;
+            }     
+            
+            PercentageCalculating = false;
         }
 
-        private int RecursiveCheck(int[] damageRolls, int remainingHP, int hitsLeft)
+        public ObservableCollection<int> DamageRolls { get; private set; }
+
+        private double _killableCombos = 0;        
+        private int _currentHP = 0;
+
+        private double RecursiveCheck(int[] damageRolls, int hitsLeft, int targetHP)
         {
             if (hitsLeft == 0) return 0;
-            if (remainingHP <= 0) return 0;
 
             // We start at max damage rolls and work our way down
 
+            _killableCombos = 0;
 
-            int killableCombos = 0;
 
-
-            for (int i = 0; i <= 32; i++)
+            for (int i = 0; i < 32; i++)
             {
                 int damage = damageRolls[i];
 
-                if (damage >= remainingHP)
+                if (damage >= targetHP)
                 {
                     // This damage roll kills
-                    killableCombos++;
+                    _killableCombos++;
                 }
                 else
                 {
                     // Damage roll does not kill outright, lower HP/hits and run again
-                    remainingHP -= damage;
-                    hitsLeft--;
-                    int additionalCombosRequired = RecursiveCheck(damageRolls, remainingHP, hitsLeft);
-                    if (additionalCombosRequired == 0)
-                    {
-                        // Either no hits left, or no remaining HP, stop calculating
-                        return killableCombos;
-                    }
-
-                    killableCombos += additionalCombosRequired;
+                    _currentHP = targetHP - damage;
+                    //remainingHP -= damage;                    
+                    _killableCombos += RecursiveCheck(damageRolls, hitsLeft - 1, _currentHP);
                 }
             }
 
-            return killableCombos;
+            return _killableCombos;
         }
 
         protected int ApplyMultipliers(int value)
         {
+            decimal multipliedValue = value;
             foreach (MultiplierModel multiplier in Multipliers.Where(t => t.IsTicked))
             {
-                value = RoundDown(value * multiplier.Multiplier);
+                multipliedValue *= multiplier.Multiplier;
+            }
+
+            return Math.Min(RoundDown(multipliedValue), 9999);
+        }
+
+        protected decimal ApplyMultipliers(decimal value)
+        {
+            foreach (MultiplierModel multiplier in Multipliers.Where(t => t.IsTicked))
+            {
+                value = value * multiplier.Multiplier;
             }
 
             return Math.Min(value, 9999);
@@ -116,7 +138,7 @@ namespace FF8Calculator.Models
         /// <summary>
         /// Requires BaseDamage/TargetHP to be set
         /// </summary>
-        protected void CalculateBase()
+        public virtual void Calculate()
         {
             // Reset all values to zero first
             MinimumDamage = 0;
@@ -130,7 +152,7 @@ namespace FF8Calculator.Models
 
             if (BaseDamage == 0 || TargetHP == 0) return;
 
-            int[] damageRolls = Enumerable.Range(0, 32).Select(t => ApplyMultipliers(RoundDown(BaseDamage * (t + 240) / 256))).ToArray();
+            int[] damageRolls = Enumerable.Range(0, 32).Select(t => ApplyMultipliers(RoundDown(BaseDamageWithoutMultipliers * (t + 240) / 256))).ToArray();
 
             damageRolls = damageRolls.Where(t => t > 0).ToArray();
             if (damageRolls.Length == 0) return;
@@ -141,25 +163,21 @@ namespace FF8Calculator.Models
             for (int i = 0; i < 32; i++)
             {
                 int dmgRoll = damageRolls[i % damageRolls.Length];
-                if (dmgRoll > TargetHP)
+                if (dmgRoll >= TargetHP)
                 {
-                    OneShotChance = decimal.Round((32 - i) / 32 * 100, 2, MidpointRounding.AwayFromZero);
+                    OneShotChance = decimal.Round((32m - i) / 32 * 100, 2, MidpointRounding.AwayFromZero);
                     break;
                 }
             }
 
-            MinNumberOfHits = RoundUp(TargetHP / MaximumDamage);
-            MaxNumberOfHits = RoundUp(TargetHP / MinimumDamage);
+            MinNumberOfHits = RoundUp((decimal)TargetHP / MaximumDamage);
+            MaxNumberOfHits = RoundUp((decimal)TargetHP / MinimumDamage);
 
-            MinDamageDealt = MinNumberOfHits * MaximumDamage;
-            MaxDamageDealt = MaxNumberOfHits * MinimumDamage;
+            MinDamageDealt = MinNumberOfHits * MinimumDamage;
+            MaxDamageDealt = MaxNumberOfHits * MaximumDamage;
 
             MaxDamageWithMinNoOfHits = MaximumDamage * MinNumberOfHits;
-            AverageDmgPerHitToKillWithMinNoOfHits = RoundUp(TargetHP / MinNumberOfHits);
-
-
-            //CalculateChangeOfKillingWithMinNoofHits(damageRolls);
-            //ChanceOfKillingWithMinNoOfHits = Math.Min(MinNumberOfHits * BaseDamage / TargetHP * 100, 1) * 100;
+            AverageDmgPerHitToKillWithMinNoOfHits = RoundUp((decimal)TargetHP / MinNumberOfHits);
         }
 
         /// <summary>
@@ -175,8 +193,33 @@ namespace FF8Calculator.Models
                 _averageDmgPerHitToKillWithMinNoOfHits = value;
                 OnPropertyChanged();
             }
+
         }
-        public int BaseDamage { get; set; }
+
+        public decimal BaseDamage
+        {
+            get => _baseDamage; 
+            protected set
+            {
+                if (_baseDamage == value)
+                    return;
+                _baseDamage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public decimal BaseDamageWithoutMultipliers
+        {
+            get => _baseDamageWithoutMultipliers; 
+            protected set
+            {
+                if (_baseDamageWithoutMultipliers == value)
+                    return;
+                _baseDamageWithoutMultipliers = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Approx. chance of killing target with min # of hits
         /// </summary>
@@ -281,7 +324,21 @@ namespace FF8Calculator.Models
                 OnPropertyChanged();
             }
         }
+
         public int TargetHP { get; set; }
 
+        public Command CalculatePercentageCommand { get; }
+
+        public bool PercentageCalculating
+        {
+            get => _percentageCalculating; 
+            private set
+            {
+                if (_percentageCalculating == value)
+                    return;
+                _percentageCalculating = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
