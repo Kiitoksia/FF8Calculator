@@ -27,6 +27,7 @@ namespace FF8Calculator.Models
 
         public BaseDamageModel()
         {
+            DamageRolls = new ObservableCollection<int>();
             Multipliers.CollectionChanged += (s, e) => OnPropertyChanged(nameof(Multipliers));
             PropertyChanged += (s, e) =>
             {

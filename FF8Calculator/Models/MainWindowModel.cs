@@ -51,8 +51,8 @@ namespace FF8Calculator.Models
             else
             {
                 LowLevelEnemy.CalculateStats(LevelCalculator.LowLevel);
-                AverageLevelEnemy.CalculateStats(LevelCalculator.AverageLevel);
-                HighLevelEnemy.CalculateStats(LevelCalculator.HighLevel);
+                AverageLevelEnemy.CalculateStats(LevelCalculator.AverageLevel);                
+                HighLevelEnemy.CalculateStats(HighLevelOverride ?? LevelCalculator.HighLevel);
             }
         }
 
@@ -94,8 +94,24 @@ namespace FF8Calculator.Models
             }
         }
 
+        private int? highLevelOverride;
+        public int? HighLevelOverride
+        {
+            get => highLevelOverride; set
+            {
+                if (highLevelOverride == value)
+                    return;
+                highLevelOverride = value;
+                OnPropertyChanged();
+                RecalculateAllStats();
+                SyncDamageModelEnemies();
+            }
+        }
+
         private void SyncDamageModelEnemies()
         {
+            if (HighLevelOverride != null) LevelSelect = LevelSelect.High;
+
             switch (LevelSelect)
             {
                 case LevelSelect.Low:
@@ -111,6 +127,9 @@ namespace FF8Calculator.Models
                     MagicDamage.Target = HighLevelEnemy;
                     break;
             }
+
+            PhysicalDamage.Calculate();
+            MagicDamage.Calculate();
         }
 
         public LevelSelect LevelSelect
