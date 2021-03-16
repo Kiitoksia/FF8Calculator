@@ -9,7 +9,7 @@
         xmlns:controls="clr-namespace:FF8Calculator.Controls"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance models:MainWindowModel}"
-        Title="MainWindow" Height="800" Width="1000">
+        Title="FF8 Calculator" Height="800" Width="1000">
     <mah:MetroWindow.Resources>
         <ResourceDictionary>
             <Style TargetType="GroupBox" BasedOn="{StaticResource MahApps.Styles.GroupBox}">

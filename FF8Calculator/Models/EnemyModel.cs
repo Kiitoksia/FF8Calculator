@@ -26,6 +26,8 @@ namespace FF8Calculator.Models
             Name = name;
             Immunities = immunities;
             Weaknesses = weaknesses;
+
+            FixedStats = new List<StatModel>();
         }
 
         private string CleanupFormula(string formula)
@@ -163,20 +165,37 @@ namespace FF8Calculator.Models
         public void CalculateStats(int level)
         {
             Level = level;
+            
+            if (FixedStats.Any())
+            {
+                StatModel stat = FixedStats[level - 1];
+                HP = stat.HP;
+                Strength = stat.Strength;
+                Magic = stat.Magic;
+                Vitality = stat.Vitality;
+                Spirit = stat.Spirit;
+                Speed = stat.Speed;
+                Evasion = 0;
+                Experience = 0;
+            }
+            else
+            {
+                CalculationEngine engine = new CalculationEngine();
+                Dictionary<string, double> variableDict = new Dictionary<string, double>();
+                variableDict.Add("Lv", level);
 
-            CalculationEngine engine = new CalculationEngine();
-            Dictionary<string, double> variableDict = new Dictionary<string, double>();
-            variableDict.Add("Lv", level);
-
-            HP = Round(engine.Calculate(CleanupFormula(HPFormula), variableDict));
-            Strength = Round(engine.Calculate(CleanupFormula(StrengthFormula), variableDict));
-            Magic = Round(engine.Calculate(CleanupFormula(MagicFormula), variableDict));
-            Vitality = Round(engine.Calculate(CleanupFormula(VitalityFormula), variableDict));
-            Spirit = Round(engine.Calculate(CleanupFormula(SpiritFormula), variableDict));
-            Speed = Round(engine.Calculate(CleanupFormula(SpeedFormula), variableDict));
-            Evasion = Round(engine.Calculate(CleanupFormula(EvasionFormula), variableDict));
-            Experience = Round(engine.Calculate(CleanupFormula(ExperienceFormula), variableDict));
+                HP = Round(engine.Calculate(CleanupFormula(HPFormula), variableDict));
+                Strength = Round(engine.Calculate(CleanupFormula(StrengthFormula), variableDict));
+                Magic = Round(engine.Calculate(CleanupFormula(MagicFormula), variableDict));
+                Vitality = Round(engine.Calculate(CleanupFormula(VitalityFormula), variableDict));
+                Spirit = Round(engine.Calculate(CleanupFormula(SpiritFormula), variableDict));
+                Speed = Round(engine.Calculate(CleanupFormula(SpeedFormula), variableDict));
+                Evasion = Round(engine.Calculate(CleanupFormula(EvasionFormula), variableDict));
+                Experience = Round(engine.Calculate(CleanupFormula(ExperienceFormula), variableDict));
+            }            
         }
+
+        public List<StatModel> FixedStats { get; }
 
         public EnemyModel Clone()
         {

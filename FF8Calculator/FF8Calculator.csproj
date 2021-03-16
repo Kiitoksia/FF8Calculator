@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>FF8Calculator</RootNamespace>
     <AssemblyName>FF8Calculator</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -29,6 +29,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -173,6 +174,7 @@
     <Compile Include="Models\Enemies\DeathClaw.cs" />
     <Compile Include="Models\Enemies\Diablos.cs" />
     <Compile Include="Models\Enemies\Droma.cs" />
+    <Compile Include="Models\Enemies\Edea.cs" />
     <Compile Include="Models\Enemies\Edea1.cs" />
     <Compile Include="Models\Enemies\Edea2.cs" />
     <Compile Include="Models\Enemies\Elastoid.cs" />
@@ -208,12 +210,22 @@
     <Compile Include="Models\Enemies\Iguion.cs" />
     <Compile Include="Models\Enemies\Imp.cs" />
     <Compile Include="Models\Enemies\IronGiant.cs" />
+    <Compile Include="Models\Enemies\Irvine.cs" />
     <Compile Include="Models\Enemies\Jelleye.cs" />
     <Compile Include="Models\Enemies\JumboCactuar.cs" />
+    <Compile Include="Models\Enemies\Kiros.cs" />
     <Compile Include="Models\Enemies\Krysta.cs" />
+    <Compile Include="Models\Enemies\Laguna.cs" />
     <Compile Include="Models\Enemies\LeftOrb.cs" />
     <Compile Include="Models\Enemies\LeftProbe.cs" />
     <Compile Include="Models\Enemies\Lefty.cs" />
+    <Compile Include="Models\Enemies\Quistis.cs" />
+    <Compile Include="Models\Enemies\Rinoa.cs" />
+    <Compile Include="Models\Enemies\Seifer.cs" />
+    <Compile Include="Models\Enemies\Selphie.cs" />
+    <Compile Include="Models\Enemies\Squall.cs" />
+    <Compile Include="Models\Enemies\Ward.cs" />
+    <Compile Include="Models\Enemies\Zell.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\Enemies\Malboro.cs" />
     <Compile Include="Models\Enemies\Mesmerize.cs" />
@@ -276,6 +288,9 @@
     <Compile Include="Models\MagicDamageModel.cs" />
     <Compile Include="Models\MultiplierModel.cs" />
     <Compile Include="Models\PhysicalDamageModel.cs" />
+    <Compile Include="Models\StatCalculatorModel.cs" />
+    <Compile Include="Models\StatJunctionModel.cs" />
+    <Compile Include="Models\StatModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
