@@ -134,5 +134,7 @@ namespace FF8Calculator.Models.Enemies
         public override string StrengthFormula => string.Empty;
 
         public override string VitalityFormula => string.Empty;
+
+        public override bool IsPlayer => true;
     }
 }

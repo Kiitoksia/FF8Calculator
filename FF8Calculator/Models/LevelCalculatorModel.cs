@@ -99,7 +99,7 @@ namespace FF8Calculator.Models
             if (partyMembersAlive == 0) return; // Cannot calculate
             AverageLevel = RoundDown((Level1 + Level2 + Level3) / partyMembersAlive);
             LowLevel = AverageLevel - RoundDown(AverageLevel / 5);
-            HighLevel = AverageLevel + RoundDown(AverageLevel / 5);
+            HighLevel = AverageLevel + RoundDown(AverageLevel / 5);            
         }
 
     }

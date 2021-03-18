@@ -11,6 +11,7 @@ namespace FF8Calculator.Models.Enemies
         public Kiros() : base(189, "Kiros", new Element[] { }, new Element[] { })
         {
             PopulateStats();
+            
         }
 
 
@@ -135,5 +136,7 @@ namespace FF8Calculator.Models.Enemies
         public override string StrengthFormula => string.Empty;
 
         public override string VitalityFormula => string.Empty;
+
+        public override bool IsPlayer => true;
     }
 }

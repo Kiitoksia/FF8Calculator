@@ -70,6 +70,19 @@ namespace FF8Calculator.Models
                 OnPropertyChanged();
             }
         }
+
+        private int _luck;
+        public int Luck
+        {
+            get => _luck; private set
+            {
+                if (_luck == value)
+                    return;
+                _luck = value;
+                OnPropertyChanged();
+            }
+        }
+
         public abstract string ExperienceFormula { get; }
         public int HP
         {
@@ -175,6 +188,7 @@ namespace FF8Calculator.Models
                 Vitality = stat.Vitality;
                 Spirit = stat.Spirit;
                 Speed = stat.Speed;
+                Luck = stat.Luck;
                 Evasion = 0;
                 Experience = 0;
             }
@@ -201,6 +215,8 @@ namespace FF8Calculator.Models
         {
             return (EnemyModel)MemberwiseClone();
         }
+
+        public virtual bool IsPlayer { get; }
 
     }
 }
