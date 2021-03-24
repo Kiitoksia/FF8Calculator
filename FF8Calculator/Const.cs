@@ -26,4 +26,15 @@ namespace FF8Calculator
         Average,
         High
     }
+
+    public enum JunctionType
+    {
+        HP,
+        STR,
+        VIT,
+        MAG,
+        SPR,
+        SPD,
+        LCK
+    }
 }

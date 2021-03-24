@@ -33,6 +33,14 @@ namespace FF8Calculator.Models
             LevelCalculator = new LevelCalculatorModel();
 
             LevelCalculator.PropertyChanged += LevelCalculator_PropertyChanged;
+            LaunchStatCalculatorCommand = new Command(() => true, LaunchStatCalculator);
+        }
+
+        private void LaunchStatCalculator()
+        {
+            StatCalculatorWindow window = new StatCalculatorWindow();
+            window.Owner = MainWindow.Instance;
+            window.Show();
         }
 
         private void LevelCalculator_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -165,6 +173,8 @@ namespace FF8Calculator.Models
                 OnPropertyChanged();
             }
         }
+
+        public Command LaunchStatCalculatorCommand { get; }
 
     }
 }

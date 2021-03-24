@@ -24,7 +24,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <GroupBox Header="Levels">
-                <controls:LevelCalculatorView DataContext="{Binding LevelCalculator}"/>
+                <StackPanel>
+                    <controls:LevelCalculatorView DataContext="{Binding LevelCalculator}"/>
+                    <Button Command="{Binding LaunchStatCalculatorCommand}" Content="Calculate Stats" Margin="10"/>
+                </StackPanel>
             </GroupBox>
             <GroupBox Header="Target" Grid.Column="1">
                 <Grid>

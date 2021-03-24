@@ -22,6 +22,21 @@ namespace FF8Calculator.Models
             Luck = luck;
         }
 
+        public decimal GetStat(JunctionType type)
+        {
+            switch (type)
+            {
+                case JunctionType.HP: return HP;
+                case JunctionType.STR: return Strength;
+                case JunctionType.VIT: return Vitality;
+                case JunctionType.MAG: return Magic;
+                case JunctionType.SPR: return Spirit;
+                case JunctionType.SPD: return Speed;
+                case JunctionType.LCK: return Luck;
+                default: throw new NotImplementedException();
+            }
+        }
+
         public string Name { get; }
         public int HP { get; }
         public decimal Strength { get; }

@@ -10,7 +10,7 @@ namespace FF8Calculator.Models.Enemies
     {
         public Irvine() : base(184, "Irvine", new Element[] { }, new Element[] { })
         {
-
+            PopulateStats();
         }
 
         #region Stats

@@ -14,9 +14,9 @@ namespace FF8Calculator.Models
         private string name;
 
 
-        public static void Create(BaseDamageModel viewModel, string name, decimal multiplier)
+        public static void Create(BaseDamageModel viewModel, string name, decimal multiplier, JunctionType? type = null)
         {
-            MultiplierModel model = new MultiplierModel(name, multiplier);
+            MultiplierModel model = new MultiplierModel(name, multiplier, type);
             model.PropertyChanged += (s, e) =>
             {
                 viewModel.OnPropertyChanged(nameof(BaseDamageModel.Multipliers));
@@ -25,10 +25,11 @@ namespace FF8Calculator.Models
             viewModel.Multipliers.Add(model);
         }
 
-        private MultiplierModel(string name, decimal multiplier)
+        private MultiplierModel(string name, decimal multiplier, JunctionType? type = null)
         {
             Name = name;
             Multiplier = multiplier; 
+            Type = type;
         }
 
         public bool IsTicked
@@ -63,6 +64,8 @@ namespace FF8Calculator.Models
                 OnPropertyChanged();
             }
         }
+
+        public JunctionType? Type { get; }
 
     }
 }

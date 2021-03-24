@@ -5,70 +5,63 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FF8Calculator.Controls"
              xmlns:models="clr-namespace:FF8Calculator.Models" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"              
              d:DataContext="{d:DesignInstance models:StatCalculatorModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel Margin="10">
 
-        <TextBlock Text="Player"/>
-        <ComboBox 
-            ItemsSource="{Binding Players, Mode=OneTime}"
-            SelectedItem="{Binding Player}"
-            DisplayMemberPath="Name"
-            Grid.Column="1"/>
-        <mah:NumericUpDown Value="{Binding Level}" Grid.Column="2"/>
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+        </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,10">
+            <TextBlock Text="Player:" Margin="0,0,5,0"/>
+            <ComboBox ItemsSource="{Binding Players}"
+                      SelectedItem="{Binding Player}"
+                      DisplayMemberPath="Name"
+                      IsTextSearchEnabled="True"
+                      TextSearch.TextPath="Name"
+                      Width="200"
+                      IsEditable="True"
+                      />
 
-        <TextBlock Text="HP" Grid.Row="1"/>
-        <ComboBox ItemsSource="{Binding Stats, Mode=OneTime}" SelectedItem="{Binding HPJunction}" DisplayMemberPath="Name" Grid.Row="1" Grid.Column="1"/>
-        <mah:NumericUpDown Value="{Binding HPAmount}" Minimum="0" Maximum="100" Grid.Row="1" Grid.Column="2"/>
+            <TextBlock Text="Level:" Margin="10,0,10,0"/>
+            <mah:NumericUpDown Minimum="1" Maximum="100" Value="{Binding Level}" Width="80"/>
+        </StackPanel>
 
-        <TextBlock Text="STR" Grid.Row="2"/>
-        <ComboBox ItemsSource="{Binding Stats, Mode=OneTime}" SelectedItem="{Binding StrengthJunction}" DisplayMemberPath="Name" Grid.Row="2" Grid.Column="1"/>
-        <mah:NumericUpDown Value="{Binding StrengthAmount}" Minimum="0" Maximum="100" Grid.Row="2" Grid.Column="2"/>
-
-        <TextBlock Text="VIT" Grid.Row="3"/>
-        <ComboBox ItemsSource="{Binding Stats, Mode=OneTime}" SelectedItem="{Binding VitalityJunction}" DisplayMemberPath="Name" Grid.Row="3" Grid.Column="1"/>
-        <mah:NumericUpDown Value="{Binding VitalityAmount}" Minimum="0" Maximum="100" Grid.Row="3" Grid.Column="2"/>
-
-        <TextBlock Text="MAG" Grid.Row="4"/>
-        <ComboBox ItemsSource="{Binding Stats, Mode=OneTime}" SelectedItem="{Binding MagicJunction}" DisplayMemberPath="Name" Grid.Row="4" Grid.Column="1"/>
-        <mah:NumericUpDown Value="{Binding MagicAmount}" Minimum="0" Maximum="100" Grid.Row="4" Grid.Column="2"/>
-
-        <TextBlock Text="SPR" Grid.Row="5"/>
-        <ComboBox ItemsSource="{Binding Stats, Mode=OneTime}" SelectedItem="{Binding SpiritJunction}" DisplayMemberPath="Name" Grid.Row="5" Grid.Column="1"/>
-        <mah:NumericUpDown Value="{Binding SpiritAmount}" Minimum="0" Maximum="100" Grid.Row="5" Grid.Column="2"/>
-
-        <TextBlock Text="SPD" Grid.Row="6"/>
-        <ComboBox ItemsSource="{Binding Stats, Mode=OneTime}" SelectedItem="{Binding SpeedJunction}" DisplayMemberPath="Name" Grid.Row="6" Grid.Column="1"/>
-        <mah:NumericUpDown Value="{Binding SpeedAmount}" Minimum="0" Maximum="100" Grid.Row="6" Grid.Column="2"/>
-
-        <TextBlock Text="LCK" Grid.Row="7"/>
-        <ComboBox ItemsSource="{Binding Stats, Mode=OneTime}" SelectedItem="{Binding LuckJunction}" DisplayMemberPath="Name" Grid.Row="7" Grid.Column="1"/>
-        <mah:NumericUpDown Value="{Binding LuckAmount}" Minimum="0" Maximum="100" Grid.Row="7" Grid.Column="2"/>
-
-        <TextBlock Text="{Binding FinalHP, StringFormat=HP: {0}}"  Grid.Row="8"/>
-        <TextBlock Text="{Binding FinalStrength, StringFormat=STR: {0}}"  Grid.Row="8" Grid.Column="1"/>
-        <TextBlock Text="{Binding FinalMagic, StringFormat=MAG: {0}}"  Grid.Row="8" Grid.Column="2"/>
-
-        <TextBlock Text="{Binding FinalSpirit, StringFormat=SPR: {0}}"  Grid.Row="9"/>
-        <TextBlock Text="{Binding FinalSpeed, StringFormat=SPD: {0}}"  Grid.Row="9" Grid.Column="1"/>
-        <TextBlock Text="{Binding FinalLuck, StringFormat=LCK: {0}}"  Grid.Row="9" Grid.Column="2"/>
-    </Grid>
+        <DataGrid ItemsSource="{Binding Stats}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="50" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="Ability" Width="180">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.Abilities, Mode=OneTime}"
+                                  SelectedItem="{Binding Ability}"
+                                  DisplayMemberPath="Name"
+                                  IsTextSearchEnabled="True"
+                                  IsTextSearchCaseSensitive="False"
+                                  TextSearch.TextPath="Name"
+                                  IsEditable="True"
+                                  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <mah:DataGridNumericUpDownColumn Header="Amount" Width="100" Binding="{Binding Amount}"/>
+                <mah:DataGridNumericUpDownColumn Header="Multiplier (%)" Binding="{Binding Multiplier}"/>
+                <DataGridTextColumn Header="Output" Binding="{Binding Output, StringFormat={}{0:n0}}" FontWeight="Bold" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </UserControl>

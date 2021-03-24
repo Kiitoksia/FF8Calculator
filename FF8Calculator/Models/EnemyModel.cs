@@ -181,7 +181,7 @@ namespace FF8Calculator.Models
             
             if (FixedStats.Any())
             {
-                StatModel stat = FixedStats[level - 1];
+                StatModel stat = FixedStats[Math.Max(level - 1, 0)];
                 HP = stat.HP;
                 Strength = stat.Strength;
                 Magic = stat.Magic;
@@ -217,6 +217,21 @@ namespace FF8Calculator.Models
         }
 
         public virtual bool IsPlayer { get; }
+
+        public decimal GetStat(JunctionType type)
+        {
+            switch (type)
+            {
+                case JunctionType.HP: return HP;
+                case JunctionType.STR: return Strength;
+                case JunctionType.VIT: return Vitality;
+                case JunctionType.MAG: return Magic;
+                case JunctionType.SPR: return Spirit;
+                case JunctionType.SPD: return Speed;
+                case JunctionType.LCK: return Luck;
+                default: throw new NotImplementedException();
+            }
+        }
 
     }
 }
