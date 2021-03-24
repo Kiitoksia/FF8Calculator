@@ -59,7 +59,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <mah:DataGridNumericUpDownColumn Header="Amount" Width="100" Binding="{Binding Amount}"/>
-                <mah:DataGridNumericUpDownColumn Header="Multiplier (%)" Binding="{Binding Multiplier}"/>
+                <mah:DataGridNumericUpDownColumn Header="Multiplier (%)" Binding="{Binding Multiplier}" Minimum="0" Maximum="100"/>
                 <DataGridTextColumn Header="Output" Binding="{Binding Output, StringFormat={}{0:n0}}" FontWeight="Bold" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>

@@ -181,7 +181,7 @@ namespace FF8Calculator.Models
             
             if (FixedStats.Any())
             {
-                StatModel stat = FixedStats[Math.Max(level - 1, 0)];
+                StatModel stat = FixedStats.SingleOrDefault(t => t.Level == level) ?? FixedStats.First();
                 HP = stat.HP;
                 Strength = stat.Strength;
                 Magic = stat.Magic;
