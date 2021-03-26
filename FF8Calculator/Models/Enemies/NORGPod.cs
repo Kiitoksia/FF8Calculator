@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class NORGPod : EnemyModel
     {
-        public NORGPod() : base(62, "NORG Pod", new Element[] { }, new Element[] { })
+        public NORGPod() : base(62, "NORG Pod")
         {
 
         }

@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Edea1 : EnemyModel
     {
-        public Edea1() : base(50, "Edea 1", new Element[] { }, new Element[] { })
+        public Edea1() : base(50, "Edea 1")
         {
 
         }

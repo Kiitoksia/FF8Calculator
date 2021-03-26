@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Grendel : EnemyModel
     {
-        public Grendel() : base(29, "Grendel", new Element[] { }, new Element[] { })
+        public Grendel() : base(29, "Grendel")
         {
 
         }

@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Griever : EnemyModel
     {
-        public Griever() : base(126, "Griever", new Element[] { }, new Element[] { })
+        public Griever() : base(126, "Griever")
         {
 
         }

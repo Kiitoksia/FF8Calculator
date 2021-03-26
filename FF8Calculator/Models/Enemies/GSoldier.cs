@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class GSoldier : EnemyModel
     {
-        public GSoldier() : base(10, "G-Soldier", new Element[] { }, new Element[] { })
+        public GSoldier() : base(10, "G-Soldier")
         {
 
         }
@@ -28,5 +28,6 @@ namespace FF8Calculator.Models.Enemies
         public override string EvasionFormula => "((Lv) / 6) - [(Lv) / 12]";
 
         public override string ExperienceFormula => "3(Lv)² + 17";
+        public override string Note => "(Raijin Boss) - Always Average Lvl";
     }
 }

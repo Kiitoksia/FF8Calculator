@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Iguion : EnemyModel
     {
-        public Iguion() : base(48, "Iguion", new Element[] { }, new Element[] { })
+        public Iguion() : base(48, "Iguion")
         {
 
         }

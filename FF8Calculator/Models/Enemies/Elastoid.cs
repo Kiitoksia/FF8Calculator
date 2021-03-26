@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Elastoid : EnemyModel
     {
-        public Elastoid() : base(37, "Elastoid", new Element[] { }, new Element[] { })
+        public Elastoid() : base(37, "Elastoid")
         {
 
         }

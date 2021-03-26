@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class LeftProbe : EnemyModel
     {
-        public LeftProbe() : base(95, "Left Probe", new Element[] { }, new Element[] { })
+        public LeftProbe() : base(95, "Left Probe")
         {
 
         }

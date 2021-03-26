@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Grat : EnemyModel
     {
-        public Grat() : base(18, "Grat", new Element[] { }, new Element[] { })
+        public Grat() : base(18, "Grat")
         {
 
         }

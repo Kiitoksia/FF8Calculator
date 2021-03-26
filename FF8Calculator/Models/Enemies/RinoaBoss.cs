@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class RinoaBoss : EnemyModel
     {
-        public RinoaBoss() : base(99, "Rinoa (Boss)", new Element[] { }, new Element[] { })
+        public RinoaBoss() : base(99, "Rinoa (Boss)")
         {
 
         }

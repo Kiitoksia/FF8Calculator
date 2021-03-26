@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Seifer2 : EnemyModel
     {
-        public Seifer2() : base(79, "Seifer 2", new Element[] { }, new Element[] { })
+        public Seifer2() : base(79, "Seifer 2")
         {
 
         }

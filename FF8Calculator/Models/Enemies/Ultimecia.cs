@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Ultimecia : EnemyModel
     {
-        public Ultimecia() : base(125, "Ultimecia", new Element[] { }, new Element[] { })
+        public Ultimecia() : base(125, "Ultimecia")
         {
 
         }

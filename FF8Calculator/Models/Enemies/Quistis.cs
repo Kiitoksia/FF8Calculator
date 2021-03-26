@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Quistis : EnemyModel
     {
-        public Quistis() : base(183, "Quistis", new Element[] { }, new Element[] { })
+        public Quistis() : base(183, "Quistis")
         {
             PopulateStats();
         }

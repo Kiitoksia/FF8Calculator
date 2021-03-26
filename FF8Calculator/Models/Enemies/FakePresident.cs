@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class FakePresident : EnemyModel
     {
-        public FakePresident() : base(23, "Fake President", new Element[] { }, new Element[] { })
+        public FakePresident() : base(23, "Fake President")
         {
 
         }

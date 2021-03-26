@@ -20,12 +20,10 @@ namespace FF8Calculator.Models
         private int _strength;
         private int _vitality;
 
-        public EnemyModel(int id, string name, Element[] immunities, Element[] weaknesses)
+        public EnemyModel(int id, string name)
         {
             ID = id;
             Name = name;
-            Immunities = immunities;
-            Weaknesses = weaknesses;
 
             FixedStats = new List<StatModel>();
         }
@@ -98,7 +96,7 @@ namespace FF8Calculator.Models
 
         public abstract string HPFormula { get; }
         public int ID { get; }
-        public Element[] Immunities { get; }
+
         private int _level;
         public int Level
         {
@@ -173,7 +171,6 @@ namespace FF8Calculator.Models
             }
         }
         public abstract string VitalityFormula { get; }
-        public Element[] Weaknesses { get; }
 
         public void CalculateStats(int level)
         {
@@ -217,6 +214,8 @@ namespace FF8Calculator.Models
         }
 
         public virtual bool IsPlayer { get; }
+
+        public virtual string Note { get; }
 
         public decimal GetStat(JunctionType type)
         {

@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class BloodSoul : EnemyModel
     {
-        public BloodSoul() : base(38, "BloodSoul", new Element[] { }, new Element[] { })
+        public BloodSoul() : base(38, "BloodSoul")
         {
 
         }

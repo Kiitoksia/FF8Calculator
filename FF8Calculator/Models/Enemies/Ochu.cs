@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Ochu : EnemyModel
     {
-        public Ochu() : base(28, "Ochu", new Element[] { }, new Element[] { })
+        public Ochu() : base(28, "Ochu")
         {
 
         }

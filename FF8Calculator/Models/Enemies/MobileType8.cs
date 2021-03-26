@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class MobileType8 : EnemyModel
     {
-        public MobileType8() : base(94, "Mobile Type 8", new Element[] { }, new Element[] { })
+        public MobileType8() : base(94, "Mobile Type 8")
         {
 
         }

@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class TRexaur : EnemyModel
     {
-        public TRexaur() : base(5, "T-Rexaur", new Element[] { }, new Element[] { })
+        public TRexaur() : base(5, "T-Rexaur")
         {
 
         }

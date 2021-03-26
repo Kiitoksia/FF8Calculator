@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Chimera : EnemyModel
     {
-        public Chimera() : base(104, "Chimera", new Element[] { }, new Element[] { })
+        public Chimera() : base(104, "Chimera")
         {
 
         }

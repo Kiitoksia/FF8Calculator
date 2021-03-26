@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Vysage : EnemyModel
     {
-        public Vysage() : base(30, "Vysage", new Element[] { }, new Element[] { })
+        public Vysage() : base(30, "Vysage")
         {
 
         }

@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Sacred : EnemyModel
     {
-        public Sacred() : base(44, "Sacred", new Element[] { }, new Element[] { })
+        public Sacred() : base(44, "Sacred")
         {
 
         }

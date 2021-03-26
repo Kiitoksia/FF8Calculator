@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Hexadragon : EnemyModel
     {
-        public Hexadragon() : base(105, "Hexadragon", new Element[] { }, new Element[] { })
+        public Hexadragon() : base(105, "Hexadragon")
         {
 
         }

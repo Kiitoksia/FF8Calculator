@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Blobra : EnemyModel
     {
-        public Blobra() : base(42, "Blobra", new Element[] { }, new Element[] { })
+        public Blobra() : base(42, "Blobra")
         {
 
         }

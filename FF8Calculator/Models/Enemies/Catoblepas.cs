@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Catoblepas : EnemyModel
     {
-        public Catoblepas() : base(122, "Catoblepas", new Element[] { }, new Element[] { })
+        public Catoblepas() : base(122, "Catoblepas")
         {
 
         }

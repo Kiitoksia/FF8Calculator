@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Tiamat : EnemyModel
     {
-        public Tiamat() : base(123, "Tiamat", new Element[] { }, new Element[] { })
+        public Tiamat() : base(123, "Tiamat")
         {
 
         }

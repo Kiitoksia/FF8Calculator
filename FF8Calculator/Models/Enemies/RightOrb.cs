@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class RightOrb : EnemyModel
     {
-        public RightOrb() : base(64, "Right Orb", new Element[] { }, new Element[] { })
+        public RightOrb() : base(64, "Right Orb")
         {
 
         }

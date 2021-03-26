@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Odin : EnemyModel
     {
-        public Odin() : base(107, "Odin", new Element[] { }, new Element[] { })
+        public Odin() : base(107, "Odin")
         {
 
         }

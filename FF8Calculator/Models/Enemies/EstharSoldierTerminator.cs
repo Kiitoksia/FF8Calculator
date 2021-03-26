@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class EstharSoldierTerminator : EnemyModel
     {
-        public EstharSoldierTerminator() : base(35, "Esthar Soldier (Terminator)", new Element[] { }, new Element[] { })
+        public EstharSoldierTerminator() : base(35, "Esthar Soldier (Terminator)")
         {
 
         }

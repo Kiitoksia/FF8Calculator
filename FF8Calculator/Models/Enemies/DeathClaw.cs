@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class DeathClaw : EnemyModel
     {
-        public DeathClaw() : base(76, "Death Claw", new Element[] { }, new Element[] { })
+        public DeathClaw() : base(76, "Death Claw")
         {
 
         }

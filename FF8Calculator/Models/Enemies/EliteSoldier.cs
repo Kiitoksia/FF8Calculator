@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class EliteSoldier : EnemyModel
     {
-        public EliteSoldier() : base(11, "Elite Soldier", new Element[] { }, new Element[] { })
+        public EliteSoldier() : base(11, "Elite Soldier")
         {
 
         }
@@ -28,5 +28,6 @@ namespace FF8Calculator.Models.Enemies
         public override string EvasionFormula => "((Lv) / 6) - [(Lv) / 12] + 2";
 
         public override string ExperienceFormula => "5(Lv)² + 25";
+        public override string Note => "(Prison Boss) - Always Average Lvl";
     }
 }

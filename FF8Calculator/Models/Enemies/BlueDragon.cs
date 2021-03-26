@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class BlueDragon : EnemyModel
     {
-        public BlueDragon() : base(72, "Blue Dragon", new Element[] { }, new Element[] { })
+        public BlueDragon() : base(72, "Blue Dragon")
         {
 
         }

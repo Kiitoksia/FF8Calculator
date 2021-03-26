@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Adel : EnemyModel
     {
-        public Adel() : base(98, "Adel", new Element[] { }, new Element[] { })
+        public Adel() : base(98, "Adel")
         {
 
         }

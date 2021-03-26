@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class TriPoint : EnemyModel
     {
-        public TriPoint() : base(116, "Tri-Point", new Element[] { }, new Element[] { })
+        public TriPoint() : base(116, "Tri-Point")
         {
 
         }

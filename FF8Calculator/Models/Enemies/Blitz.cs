@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Blitz : EnemyModel
     {
-        public Blitz() : base(75, "Blitz", new Element[] { }, new Element[] { })
+        public Blitz() : base(75, "Blitz")
         {
 
         }

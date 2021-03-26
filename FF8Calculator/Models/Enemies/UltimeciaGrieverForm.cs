@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class UltimeciaGrieverForm : EnemyModel
     {
-        public UltimeciaGrieverForm() : base(127, "Ultimecia (Griever Form)", new Element[] { }, new Element[] { })
+        public UltimeciaGrieverForm() : base(127, "Ultimecia (Griever Form)")
         {
 
         }

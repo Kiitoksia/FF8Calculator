@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Selphie : EnemyModel
     {
-        public Selphie() : base(182, "Selphie", new Element[] { }, new Element[] { })
+        public Selphie() : base(182, "Selphie")
         {
             PopulateStats();
         }

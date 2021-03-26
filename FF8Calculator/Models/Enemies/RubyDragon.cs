@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class RubyDragon : EnemyModel
     {
-        public RubyDragon() : base(82, "Ruby Dragon", new Element[] { }, new Element[] { })
+        public RubyDragon() : base(82, "Ruby Dragon")
         {
 
         }

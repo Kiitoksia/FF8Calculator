@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class NORG : EnemyModel
     {
-        public NORG() : base(65, "NORG", new Element[] { }, new Element[] { })
+        public NORG() : base(65, "NORG")
         {
 
         }

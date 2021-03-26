@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class BiteBug : EnemyModel
     {
-        public BiteBug() : base(1, "Bite Bug", new Element[] { }, new Element[] { })
+        public BiteBug() : base(1, "Bite Bug")
         {
 
         }

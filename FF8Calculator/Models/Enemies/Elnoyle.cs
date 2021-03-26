@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Elnoyle : EnemyModel
     {
-        public Elnoyle() : base(90, "Elnoyle", new Element[] { }, new Element[] { })
+        public Elnoyle() : base(90, "Elnoyle")
         {
 
         }

@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class BGH251F22 : EnemyModel
     {
-        public BGH251F22() : base(66, "BGH251F2 2", new Element[] { }, new Element[] { })
+        public BGH251F22() : base(66, "BGH251F2 2")
         {
 
         }

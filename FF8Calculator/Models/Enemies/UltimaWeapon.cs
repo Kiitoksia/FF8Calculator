@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class UltimaWeapon : EnemyModel
     {
-        public UltimaWeapon() : base(112, "Ultima Weapon", new Element[] { }, new Element[] { })
+        public UltimaWeapon() : base(112, "Ultima Weapon")
         {
 
         }
@@ -28,5 +28,6 @@ namespace FF8Calculator.Models.Enemies
         public override string EvasionFormula => "((Lv) / 10) - [(Lv) / 20]";
 
         public override string ExperienceFormula => "0";
+        public override string Note => "Always Average Lvl";
     }
 }

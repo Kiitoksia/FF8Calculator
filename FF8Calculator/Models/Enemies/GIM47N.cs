@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class GIM47N : EnemyModel
     {
-        public GIM47N() : base(52, "GIM47N", new Element[] { }, new Element[] { })
+        public GIM47N() : base(52, "GIM47N")
         {
 
         }

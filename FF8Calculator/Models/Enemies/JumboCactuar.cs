@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class JumboCactuar : EnemyModel
     {
-        public JumboCactuar() : base(110, "Jumbo Cactuar", new Element[] { }, new Element[] { })
+        public JumboCactuar() : base(110, "Jumbo Cactuar")
         {
 
         }
@@ -28,5 +28,6 @@ namespace FF8Calculator.Models.Enemies
         public override string EvasionFormula => "((Lv) / 16) - [(Lv) / 32]";
 
         public override string ExperienceFormula => "0";
+        public override string Note => "Always Average Lvl";
     }
 }

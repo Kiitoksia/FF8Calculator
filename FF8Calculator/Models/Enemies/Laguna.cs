@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Laguna : EnemyModel
     {
-        public Laguna() : base(188, "Laguna", new Element[] { }, new Element[] { })
+        public Laguna() : base(188, "Laguna")
         {
             PopulateStats();
         }

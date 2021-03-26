@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Diablos : EnemyModel
     {
-        public Diablos() : base(21, "Diablos", new Element[] { }, new Element[] { })
+        public Diablos() : base(21, "Diablos")
         {
 
         }
@@ -28,5 +28,7 @@ namespace FF8Calculator.Models.Enemies
         public override string EvasionFormula => "((Lv) / 8) - [(Lv) / 24]";
 
         public override string ExperienceFormula => "0";
+
+        public override string Note => "Always Average Lvl";
     }
 }

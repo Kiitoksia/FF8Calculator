@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Propagator : EnemyModel
     {
-        public Propagator() : base(85, "Propagator", new Element[] { }, new Element[] { })
+        public Propagator() : base(85, "Propagator")
         {
 
         }

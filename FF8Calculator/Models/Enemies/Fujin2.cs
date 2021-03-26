@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Fujin2 : EnemyModel
     {
-        public Fujin2() : base(93, "Fujin 2 (EoD3)", new Element[] { }, new Element[] { })
+        public Fujin2() : base(93, "Fujin 2 (EoD3)")
         {
 
         }

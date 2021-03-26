@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Mesmerize : EnemyModel
     {
-        public Mesmerize() : base(69, "Mesmerize", new Element[] { }, new Element[] { })
+        public Mesmerize() : base(69, "Mesmerize")
         {
 
         }

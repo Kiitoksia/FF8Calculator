@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Zell : EnemyModel
     {
-        public Zell() : base(181, "Zell", new Element[] { }, new Element[] { })
+        public Zell() : base(181, "Zell")
         {
             PopulateStats();
         }

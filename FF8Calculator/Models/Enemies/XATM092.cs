@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class XATM092 : EnemyModel
     {
-        public XATM092() : base(17, "X-ATM092", new Element[] { }, new Element[] { })
+        public XATM092() : base(17, "X-ATM092")
         {
 
         }

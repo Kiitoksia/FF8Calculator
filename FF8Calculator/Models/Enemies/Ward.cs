@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Ward : EnemyModel
     {
-        public Ward() : base(190, "Ward", new Element[] { }, new Element[] { })
+        public Ward() : base(190, "Ward")
         {
             PopulateStats();
         }

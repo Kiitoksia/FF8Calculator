@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Cerberus : EnemyModel
     {
-        public Cerberus() : base(78, "Cerberus", new Element[] { }, new Element[] { })
+        public Cerberus() : base(78, "Cerberus")
         {
 
         }

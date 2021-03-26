@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Bahamut : EnemyModel
     {
-        public Bahamut() : base(111, "Bahamut", new Element[] { }, new Element[] { })
+        public Bahamut() : base(111, "Bahamut")
         {
 
         }

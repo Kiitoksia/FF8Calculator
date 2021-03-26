@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class SnowLion : EnemyModel
     {
-        public SnowLion() : base(71, "Snow Lion", new Element[] { }, new Element[] { })
+        public SnowLion() : base(71, "Snow Lion")
         {
 
         }

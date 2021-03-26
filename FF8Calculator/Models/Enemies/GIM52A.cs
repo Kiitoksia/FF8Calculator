@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class GIM52A : EnemyModel
     {
-        public GIM52A() : base(53, "GIM52A", new Element[] { }, new Element[] { })
+        public GIM52A() : base(53, "GIM52A")
         {
 
         }
@@ -28,5 +28,6 @@ namespace FF8Calculator.Models.Enemies
         public override string EvasionFormula => "((Lv) / 10) - [(Lv) / 20]";
 
         public override string ExperienceFormula => "8(Lv)² + 22";
+        public override string Note => "(Prison Boss) - Always Average Lvl";
     }
 }

@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class SAM08G : EnemyModel
     {
-        public SAM08G() : base(58, "SAM08G", new Element[] { }, new Element[] { })
+        public SAM08G() : base(58, "SAM08G")
         {
 
         }

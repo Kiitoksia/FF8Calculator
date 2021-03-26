@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Imp : EnemyModel
     {
-        public Imp() : base(88, "Imp", new Element[] { }, new Element[] { })
+        public Imp() : base(88, "Imp")
         {
 
         }

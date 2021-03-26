@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Anacondaur : EnemyModel
     {
-        public Anacondaur() : base(13, "Anacondaur", new Element[] { }, new Element[] { })
+        public Anacondaur() : base(13, "Anacondaur")
         {
 
         }

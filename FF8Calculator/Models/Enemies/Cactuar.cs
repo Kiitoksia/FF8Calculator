@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Cactuar : EnemyModel
     {
-        public Cactuar() : base(109, "Cactuar", new Element[] { }, new Element[] { })
+        public Cactuar() : base(109, "Cactuar")
         {
 
         }

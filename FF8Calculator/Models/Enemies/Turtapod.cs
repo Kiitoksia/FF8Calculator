@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Turtapod : EnemyModel
     {
-        public Turtapod() : base(86, "Turtapod", new Element[] { }, new Element[] { })
+        public Turtapod() : base(86, "Turtapod")
         {
 
         }

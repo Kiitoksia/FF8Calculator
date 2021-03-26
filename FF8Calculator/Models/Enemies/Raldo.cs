@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Raldo : EnemyModel
     {
-        public Raldo() : base(20, "Raldo", new Element[] { }, new Element[] { })
+        public Raldo() : base(20, "Raldo")
         {
 
         }

@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Squall : EnemyModel
     {
-        public Squall() : base(180, "Squall", new Element[] { }, new Element[] { })
+        public Squall() : base(180, "Squall")
         {
             PopulateStats();
         }

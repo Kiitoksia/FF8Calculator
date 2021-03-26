@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Kiros : EnemyModel
     {
-        public Kiros() : base(189, "Kiros", new Element[] { }, new Element[] { })
+        public Kiros() : base(189, "Kiros")
         {
             PopulateStats();
             

@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class TriFace : EnemyModel
     {
-        public TriFace() : base(60, "Tri-Face", new Element[] { }, new Element[] { })
+        public TriFace() : base(60, "Tri-Face")
         {
 
         }

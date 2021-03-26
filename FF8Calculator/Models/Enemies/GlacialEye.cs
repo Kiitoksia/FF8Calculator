@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class GlacialEye : EnemyModel
     {
-        public GlacialEye() : base(2, "Glacial Eye", new Element[] { }, new Element[] { })
+        public GlacialEye() : base(2, "Glacial Eye")
         {
 
         }

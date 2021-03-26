@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Forbidden : EnemyModel
     {
-        public Forbidden() : base(43, "Forbidden", new Element[] { }, new Element[] { })
+        public Forbidden() : base(43, "Forbidden")
         {
 
         }

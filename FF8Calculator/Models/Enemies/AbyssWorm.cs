@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class AbyssWorm : EnemyModel
     {
-        public AbyssWorm() : base(103, "Abyss Worm", new Element[] { }, new Element[] { })
+        public AbyssWorm() : base(103, "Abyss Worm")
         {
 
         }

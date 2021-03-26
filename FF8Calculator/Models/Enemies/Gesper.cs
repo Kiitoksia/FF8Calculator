@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Gesper : EnemyModel
     {
-        public Gesper() : base(36, "Gesper", new Element[] { }, new Element[] { })
+        public Gesper() : base(36, "Gesper")
         {
 
         }

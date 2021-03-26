@@ -73,6 +73,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Enemies\UltimeciaLower.cs" />
     <Compile Include="Models\IndividualStatModel.cs" />
     <Compile Include="StatCalculatorWindow.xaml.cs">
       <DependentUpon>StatCalculatorWindow.xaml</DependentUpon>

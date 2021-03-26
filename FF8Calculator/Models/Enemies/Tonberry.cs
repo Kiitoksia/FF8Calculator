@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Tonberry : EnemyModel
     {
-        public Tonberry() : base(106, "Tonberry", new Element[] { }, new Element[] { })
+        public Tonberry() : base(106, "Tonberry")
         {
 
         }
@@ -28,5 +28,6 @@ namespace FF8Calculator.Models.Enemies
         public override string EvasionFormula => "1";
 
         public override string ExperienceFormula => "0";
+        public override string Note => "Always Average Lvl";
     }
 }

@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class BaseLeader : EnemyModel
     {
-        public BaseLeader() : base(57, "Base Leader", new Element[] { }, new Element[] { })
+        public BaseLeader() : base(57, "Base Leader")
         {
 
         }

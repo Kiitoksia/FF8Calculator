@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class GrandMantis : EnemyModel
     {
-        public GrandMantis() : base(47, "Grand Mantis", new Element[] { }, new Element[] { })
+        public GrandMantis() : base(47, "Grand Mantis")
         {
 
         }

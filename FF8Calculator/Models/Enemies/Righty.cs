@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Righty : EnemyModel
     {
-        public Righty() : base(32, "Righty", new Element[] { }, new Element[] { })
+        public Righty() : base(32, "Righty")
         {
 
         }

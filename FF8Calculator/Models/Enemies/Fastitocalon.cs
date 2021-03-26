@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Fastitocalon : EnemyModel
     {
-        public Fastitocalon() : base(40, "Fastitocalon", new Element[] { }, new Element[] { })
+        public Fastitocalon() : base(40, "Fastitocalon")
         {
 
         }

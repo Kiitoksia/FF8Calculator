@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Torama : EnemyModel
     {
-        public Torama() : base(87, "Torama", new Element[] { }, new Element[] { })
+        public Torama() : base(87, "Torama")
         {
 
         }

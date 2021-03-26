@@ -8,7 +8,7 @@ namespace FF8Calculator.Models.Enemies
 {
     public class Droma : EnemyModel
     {
-        public Droma() : base(119, "Droma", new Element[] { }, new Element[] { })
+        public Droma() : base(119, "Droma")
         {
 
         }
