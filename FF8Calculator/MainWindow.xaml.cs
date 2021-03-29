@@ -27,7 +27,6 @@ namespace FF8Calculator
             InitializeComponent();
 
             DataContext = new MainWindowModel();
-
             Instance = this;
         }
 

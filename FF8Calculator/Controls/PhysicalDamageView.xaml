@@ -26,6 +26,8 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <TextBlock Text="Ability"/>
@@ -37,7 +39,19 @@
             <TextBlock Text="Attacker Strength" Grid.Row="1"/>
             <mah:NumericUpDown Value="{Binding AttackerStrength}" Minimum="0" Maximum="999" Grid.Row="1" Grid.Column="1"/>
 
-            <local:BaseDamageView DataContext="{Binding .}" Grid.Row="2" Grid.ColumnSpan="2"/>
+            <TextBlock Text="Attacker Luck" Grid.Row="2"/>
+            <mah:NumericUpDown Value="{Binding AttackerLuck}" Minimum="0" Maximum="100" Grid.Row="2" Grid.Column="1"/>
+
+            <local:BaseDamageView DataContext="{Binding .}" Grid.Row="3" Grid.ColumnSpan="2"/>
+            
+            <Grid Grid.Row="4" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.3*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Chance of at least one crit with irvine Shot"/>
+                <TextBox Text="{Binding IrvineShotCritChance, StringFormat={}{0:n2}%, Mode=OneWay}" Grid.Column="1" TextAlignment="Right" IsReadOnly="True"/>
+            </Grid>
         </Grid>
 
     </Grid>

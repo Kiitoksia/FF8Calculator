@@ -9,6 +9,8 @@ namespace FF8Calculator.Models
     public class PhysicalDamageModel : BaseDamageModel
     {
         private AbilityModel _attackType;
+        private decimal _irvineShotCritChance;
+
 
         public PhysicalDamageModel()
         {
@@ -56,14 +58,27 @@ namespace FF8Calculator.Models
         public int MinElementalDamage { get; set; }
         public int MaxElementalDamage { get; set; }
 
-        private int attackerStrength;
+        private int _attackerStrength;
         public int AttackerStrength
         {
-            get => attackerStrength; set
+            get => _attackerStrength; set
             {
-                if (attackerStrength == value)
+                if (_attackerStrength == value)
                     return;
-                attackerStrength = value;
+                _attackerStrength = value;
+                OnPropertyChanged();
+                Calculate();
+            }
+        }
+
+        private int _attackerLuck;
+        public int AttackerLuck
+        {
+            get => _attackerLuck; set
+            {
+                if (_attackerLuck == value)
+                    return;
+                _attackerLuck = value;
                 OnPropertyChanged();
                 Calculate();
             }
@@ -97,8 +112,27 @@ namespace FF8Calculator.Models
             ElementalDamage = RoundDown(Math.Min(BaseDamage + BaseDamage * ElemAttack * (800 - ElemDefence) / 10000, 9999));
             MinElementalDamage = RoundDown(Math.Min(MinimumDamage + MinimumDamage * ElemAttack * (800 - ElemDefence / 10000), 9999));
             MinElementalDamage = RoundDown(Math.Min(MaximumDamage + MaximumDamage * ElemAttack * (800 - ElemDefence / 10000), 9999));
+
+            IrvineShotCritChance = 0;
+            if (AttackerLuck > 0)
+            {
+                // chance of at least 1 crit in x # of hits = 1 - Chance of 0 crits in x # of hits = 1 - (1-crit chance)^x                
+                double luck = (AttackerLuck + 26) / 256d;
+                luck = 1 - Math.Pow(1 - luck, MinNumberOfHits);
+                IrvineShotCritChance = (decimal)luck * 100;
+            }
         }
 
-                
+        public decimal IrvineShotCritChance
+        {
+            get => _irvineShotCritChance; private set
+            {
+                if (_irvineShotCritChance == value)
+                    return;
+                _irvineShotCritChance = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }
