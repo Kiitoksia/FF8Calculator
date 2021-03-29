@@ -39,6 +39,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
@@ -68,15 +69,17 @@
                         <mah:NumericUpDown Value="{Binding HighLevelOverride}" Maximum="99"/>
                     </DockPanel>
 
-                    <GroupBox Header="Low Level" Grid.Row="2" Margin="0,10,0,0">
+                    <TextBlock Text="{Binding Target.Note, Mode=OneWay}" FontWeight="Bold" Grid.Row="2" Grid.ColumnSpan="3"/>
+
+                    <GroupBox Header="Low Level" Grid.Row="3" Margin="0,10,0,0">
                         <controls:EnemyStatsView DataContext="{Binding LowLevelEnemy}"/>
                     </GroupBox>
 
-                    <GroupBox Header="Average Level" Grid.Row="2" Grid.Column="1" Margin="0,10,0,0">
+                    <GroupBox Header="Average Level" Grid.Row="3" Grid.Column="1" Margin="0,10,0,0">
                         <controls:EnemyStatsView DataContext="{Binding AverageLevelEnemy}"/>
                     </GroupBox>
 
-                    <GroupBox Header="High Level" Grid.Row="2" Grid.Column="2" Margin="0,10,0,0">
+                    <GroupBox Header="High Level" Grid.Row="3" Grid.Column="2" Margin="0,10,0,0">
                         <controls:EnemyStatsView DataContext="{Binding HighLevelEnemy}"/>
                     </GroupBox>
 

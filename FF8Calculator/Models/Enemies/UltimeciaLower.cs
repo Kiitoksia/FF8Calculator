@@ -1,3 +1,4 @@
+using FF8Calculator.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FF8Calculator.Models.Enemies
 {
-    public class UltimeciaLower : EnemyModel
+    public class UltimeciaLower : EnemyModel, IUltimecia
     {
         public UltimeciaLower() : base(129, "Ultimecia (Final Boss - Lower)")
         {

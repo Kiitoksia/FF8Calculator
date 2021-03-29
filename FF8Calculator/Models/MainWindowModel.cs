@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FF8Calculator.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -58,9 +59,19 @@ namespace FF8Calculator.Models
             }
             else
             {
-                LowLevelEnemy.CalculateStats(LevelCalculator.LowLevel);
-                AverageLevelEnemy.CalculateStats(LevelCalculator.AverageLevel);                
-                HighLevelEnemy.CalculateStats(HighLevelOverride ?? LevelCalculator.HighLevel);
+                int lowLevel = LevelCalculator.LowLevel;
+                int averageLevel = LevelCalculator.AverageLevel;
+                int highLevel = LevelCalculator.HighLevel;
+                if (Target is IUltimecia)
+                {
+                    lowLevel--;
+                    highLevel++;
+                }
+
+                if (HighLevelOverride != null) highLevel = HighLevelOverride.Value;
+                LowLevelEnemy.CalculateStats(lowLevel);
+                AverageLevelEnemy.CalculateStats(averageLevel);                
+                HighLevelEnemy.CalculateStats(highLevel);
             }
         }
 
